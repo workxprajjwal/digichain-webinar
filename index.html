@@ -25,7 +25,7 @@
   --card2:rgba(123,91,219,0.08);
 }
 html{scroll-behavior:smooth;}
-
+ 
 body{
   background:var(--bg);
   color:var(--text);
@@ -33,7 +33,7 @@ body{
   overflow-x:hidden;
   min-height:100vh;
 }
-
+ 
 /* ======= BLOCKCHAIN BACKGROUND ======= */
 .bg-layer{
   position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;
@@ -63,7 +63,7 @@ body{
   33%{transform:translate(30px,-20px);}
   66%{transform:translate(-20px,30px);}
 }
-
+ 
 /* ======= FLOATING CHAIN NODES ======= */
 .chain-nodes{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
 .node{
@@ -78,7 +78,7 @@ body{
   90%{opacity:0.6;}
   100%{transform:translateY(-100px) rotate(360deg);opacity:0;}
 }
-
+ 
 /* ======= NAV ======= */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
@@ -105,7 +105,7 @@ nav{
   box-shadow:0 4px 20px rgba(123,91,219,0.4);
 }
 .nav-cta:hover{opacity:0.9;transform:translateY(-2px);box-shadow:0 6px 28px rgba(123,91,219,0.55);}
-
+ 
 /* ======= HERO ======= */
 .hero{
   position:relative;z-index:1;min-height:100vh;
@@ -114,7 +114,7 @@ nav{
   padding:8rem 3rem 4rem;max-width:1300px;margin:0 auto;
 }
 @media(max-width:1000px){.hero{grid-template-columns:1fr;padding:7rem 1.5rem 3rem;gap:2.5rem;}}
-
+ 
 .badge{
   display:inline-flex;align-items:center;gap:8px;
   font-family:'Space Mono',monospace;font-size:0.68rem;
@@ -127,11 +127,11 @@ nav{
   box-shadow:0 0 8px var(--cyan);animation:pulse 1.8s ease-in-out infinite;
 }
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.3;transform:scale(1.6);}}
-
+ 
 h1{font-size:clamp(2rem,4.5vw,3.8rem);font-weight:800;line-height:1.06;letter-spacing:-0.025em;margin-bottom:1.3rem;}
 .grad-text{background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 h1 .sub-line{display:block;color:var(--muted);font-weight:600;font-size:0.58em;margin-top:0.3em;letter-spacing:0.01em;}
-
+ 
 .warmth{
   background:linear-gradient(135deg,rgba(0,229,255,0.06),rgba(123,91,219,0.06));
   border:1px solid rgba(0,229,255,0.15);border-radius:12px;
@@ -139,9 +139,9 @@ h1 .sub-line{display:block;color:var(--muted);font-weight:600;font-size:0.58em;m
   margin-bottom:1.8rem;line-height:1.65;
 }
 .warmth strong{color:#fff;}
-
+ 
 .hero-desc{font-size:0.98rem;color:var(--muted);line-height:1.75;max-width:520px;margin-bottom:1.8rem;}
-
+ 
 .stats-row{display:flex;gap:2.2rem;flex-wrap:wrap;margin-bottom:1.8rem;}
 .stat{display:flex;flex-direction:column;gap:2px;}
 .stat-num{
@@ -149,7 +149,7 @@ h1 .sub-line{display:block;color:var(--muted);font-weight:600;font-size:0.58em;m
   background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
 .stat-label{font-size:0.68rem;color:var(--muted);letter-spacing:0.07em;text-transform:uppercase;}
-
+ 
 /* countdown */
 .countdown{display:flex;gap:0.8rem;margin-bottom:1.8rem;flex-wrap:wrap;}
 .cd-box{
@@ -162,13 +162,13 @@ h1 .sub-line{display:block;color:var(--muted);font-weight:600;font-size:0.58em;m
   background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;
 }
 .cd-label{font-size:0.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-top:3px;}
-
+ 
 .tags{display:flex;flex-wrap:wrap;gap:7px;}
 .tag{
   font-family:'Space Mono',monospace;font-size:0.66rem;padding:4px 10px;border-radius:4px;
   border:1px solid rgba(123,91,219,0.4);color:#c4b5fd;background:rgba(123,91,219,0.09);
 }
-
+ 
 /* ======= FORM CARD ======= */
 .form-card{
   position:relative;
@@ -177,17 +177,17 @@ h1 .sub-line{display:block;color:var(--muted);font-weight:600;font-size:0.58em;m
   box-shadow:0 0 60px rgba(123,91,219,0.2);
 }
 .form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);}
-
+ 
 .form-logo-row{display:flex;align-items:center;gap:12px;margin-bottom:0.8rem;}
 .form-logo-row img{width:40px;height:40px;object-fit:contain;}
 .form-title{font-size:1.3rem;font-weight:800;color:var(--text);}
 .form-sub{font-size:0.74rem;color:var(--muted);margin-bottom:1.5rem;font-family:'Space Mono',monospace;}
-
+ 
 .form-group{margin-bottom:0.95rem;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;margin-bottom:0.95rem;}
 @media(max-width:500px){.form-row{grid-template-columns:1fr;}}
 label{display:block;font-size:0.65rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#a78bfa;margin-bottom:0.3rem;}
-
+ 
 input,select,textarea{
   width:100%;background:rgba(255,255,255,0.05);
   border:1px solid rgba(123,91,219,0.25);border-radius:8px;
@@ -202,7 +202,7 @@ input:focus,select:focus,textarea:focus{
 select{cursor:pointer;color:var(--text);}
 select option{background:#160b3a;color:var(--text);}
 textarea{resize:none;height:70px;}
-
+ 
 .submit-btn{
   width:100%;background:var(--grad);color:#07050f;border:none;border-radius:10px;
   padding:0.9rem;font-family:'Syne',sans-serif;font-size:0.97rem;font-weight:800;
@@ -213,7 +213,7 @@ textarea{resize:none;height:70px;}
 .submit-btn:active{transform:translateY(0);}
 .submit-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;box-shadow:none;}
 .privacy-note{text-align:center;font-size:0.67rem;color:var(--muted);margin-top:0.85rem;font-family:'Space Mono',monospace;}
-
+ 
 /* success */
 .success-msg{display:none;text-align:center;padding:1.5rem 0;}
 .success-icon{font-size:3rem;margin-bottom:0.8rem;}
@@ -234,21 +234,21 @@ textarea{resize:none;height:70px;}
 }
 .wa-btn-s:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(37,211,102,0.35);}
 .wa-btn-s svg{width:18px;height:18px;}
-
+ 
 /* errors */
 .field-error{font-size:0.67rem;color:#f472b6;margin-top:3px;display:none;}
 input.invalid,select.invalid{border-color:#f472b6!important;}
-
+ 
 /* spinner */
 .spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(7,5,15,0.3);border-top-color:#07050f;border-radius:50%;animation:spin 0.6s linear infinite;vertical-align:middle;margin-right:6px;}
 @keyframes spin{to{transform:rotate(360deg);}}
-
+ 
 /* ======= SECTIONS ======= */
 .section{position:relative;z-index:1;max-width:1300px;margin:0 auto;padding:5rem 3rem;}
 @media(max-width:700px){.section{padding:3rem 1.5rem;}}
 .section-label{font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--purple);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.8rem;}
 .section-heading{font-size:clamp(1.7rem,2.8vw,2.5rem);font-weight:800;margin-bottom:2.5rem;max-width:600px;line-height:1.12;}
-
+ 
 /* ======= SESSION TIMELINE ======= */
 .timeline{display:flex;flex-direction:column;gap:0;max-width:860px;}
 .tl-item{
@@ -303,7 +303,7 @@ input.invalid,select.invalid{border-color:#f472b6!important;}
   .tl-item:not(:last-child) .tl-right::before{left:27px;}
   .tl-dot{left:-10px;}
 }
-
+ 
 /* date banner */
 .date-banner{
   background:linear-gradient(135deg,rgba(0,229,255,0.06),rgba(123,91,219,0.08),rgba(224,64,251,0.06));
@@ -314,13 +314,13 @@ input.invalid,select.invalid{border-color:#f472b6!important;}
 .di{display:flex;flex-direction:column;gap:3px;}
 .dl{font-size:0.64rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;font-family:'Space Mono',monospace;}
 .dv{font-size:1rem;font-weight:700;color:var(--text);}
-
+ 
 /* ======= INSTRUCTOR ======= */
 .instructor-wrap{
   display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;max-width:1000px;
 }
 @media(max-width:800px){.instructor-wrap{grid-template-columns:1fr;}}
-
+ 
 .company-card{
   background:linear-gradient(160deg,rgba(22,11,58,0.9),rgba(11,5,32,0.95));
   border:1px solid var(--border);border-radius:16px;padding:2rem;
@@ -335,7 +335,7 @@ input.invalid,select.invalid{border-color:#f472b6!important;}
 .company-bullets{list-style:none;display:flex;flex-direction:column;gap:6px;}
 .company-bullets li{font-size:0.78rem;color:var(--muted);display:flex;align-items:flex-start;gap:8px;line-height:1.5;}
 .company-bullets li::before{content:'→';color:var(--purple);font-family:'Space Mono',monospace;font-size:0.7rem;margin-top:2px;flex-shrink:0;}
-
+ 
 .founder-card{
   background:linear-gradient(160deg,rgba(22,11,58,0.9),rgba(11,5,32,0.95));
   border:1px solid var(--border);border-radius:16px;padding:2rem;
@@ -360,7 +360,7 @@ input.invalid,select.invalid{border-color:#f472b6!important;}
 .f-stat{display:flex;flex-direction:column;gap:2px;}
 .f-stat-num{font-family:'Space Mono',monospace;font-size:1rem;font-weight:700;color:var(--cyan);}
 .f-stat-label{font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;}
-
+ 
 /* ======= WHATSAPP COMMUNITY ======= */
 .wa-section{
   position:relative;z-index:1;
@@ -375,10 +375,10 @@ input.invalid,select.invalid{border-color:#f472b6!important;}
 }
 .wa-inner{max-width:1300px;margin:0 auto;padding:4rem 3rem;display:grid;grid-template-columns:1fr 380px;gap:4rem;align-items:center;}
 @media(max-width:900px){.wa-inner{grid-template-columns:1fr;padding:3rem 1.5rem;gap:2rem;}}
-
+ 
 .wa-left h2{font-size:clamp(1.6rem,2.8vw,2.2rem);font-weight:800;margin-bottom:0.7rem;line-height:1.15;}
 .wa-tagline{font-size:0.9rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem;max-width:480px;}
-
+ 
 .wa-groups{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:2rem;}
 @media(max-width:500px){.wa-groups{grid-template-columns:1fr;}}
 .wa-group{
@@ -389,7 +389,7 @@ input.invalid,select.invalid{border-color:#f472b6!important;}
 .wa-group-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px;}
 .wa-group-title{font-size:0.82rem;font-weight:700;color:#86efac;margin-bottom:0.15rem;}
 .wa-group-desc{font-size:0.72rem;color:var(--muted);}
-
+ 
 .wa-who{
   background:rgba(255,255,255,0.03);border:1px solid rgba(37,211,102,0.15);
   border-radius:10px;padding:0.85rem 1.1rem;
@@ -397,7 +397,7 @@ input.invalid,select.invalid{border-color:#f472b6!important;}
   margin-bottom:1.8rem;
 }
 .wa-who strong{color:var(--text);}
-
+ 
 .wa-big-btn{
   display:inline-flex;align-items:center;gap:12px;
   background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;
@@ -408,7 +408,7 @@ input.invalid,select.invalid{border-color:#f472b6!important;}
 }
 .wa-big-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,0.45);}
 .wa-big-btn svg{width:22px;height:22px;}
-
+ 
 /* wa right card */
 .wa-card{
   background:linear-gradient(160deg,rgba(7,42,20,0.5),rgba(11,5,32,0.9));
@@ -427,7 +427,7 @@ input.invalid,select.invalid{border-color:#f472b6!important;}
 .wa-features{display:flex;flex-direction:column;gap:7px;}
 .wa-feature{display:flex;align-items:center;gap:8px;font-size:0.78rem;color:var(--muted);}
 .wa-feature::before{content:'✓';color:#25d366;font-weight:700;flex-shrink:0;}
-
+ 
 /* ======= FOOTER ======= */
 footer{
   position:relative;z-index:1;
@@ -441,7 +441,7 @@ footer{
 .footer-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin:0.6rem 0;}
 .footer-links a{color:var(--muted);text-decoration:none;font-size:0.7rem;transition:color 0.2s;}
 .footer-links a:hover{color:var(--cyan);}
-
+ 
 /* fade in */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 .hero-content>*{animation:fadeUp 0.6s ease forwards;opacity:0;}
@@ -456,12 +456,12 @@ footer{
 </style>
 </head>
 <body>
-
+ 
 <!-- BG LAYERS -->
 <div class="bg-layer"></div>
 <div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div><div class="orb orb4"></div>
 <div class="chain-nodes" id="chainNodes"></div>
-
+ 
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
@@ -471,45 +471,45 @@ footer{
       <span class="nav-sub">www.digichainpi.com</span>
     </div>
   </div>
-  <a href="#register" class="nav-cta">Reserve My Spot →</a>
+  <a href="#formSection" class="nav-cta">Reserve My Spot →</a>
 </nav>
-
+ 
 <!-- HERO -->
 <section class="hero" id="register">
   <div class="hero-content">
-
+ 
     <div class="badge">
       <span class="badge-dot"></span>
       FREE LIVE WEBINAR · 14 JUNE 2025 · LIMITED TO 200 SEATS
     </div>
-
+ 
     <h1>
       <span>Build Real</span><br/>
       <span class="grad-text">Smart Contracts</span>
       <span class="sub-line">From Zero to Deployed on Ethereum — in One Afternoon</span>
     </h1>
-
+ 
     <div class="warmth">
       👋 <strong>No jargon. No boring slides. Just real code.</strong><br/>
       We write, break, fix, and deploy together — live. You'll leave with an actual smart contract deployed on Ethereum testnet, not just theory.
     </div>
-
+ 
     <p class="hero-desc">A hands-on, practical 150-minute live session by <strong style="color:#c4b5fd">Digichain Pioneers</strong> — India's blockchain education & innovation company. Even if you've never touched blockchain before.</p>
-
+ 
     <div class="stats-row">
       <div class="stat"><span class="stat-num">150m</span><span class="stat-label">Live coding</span></div>
       <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Practical</span></div>
       <div class="stat"><span class="stat-num">₹0</span><span class="stat-label">Completely free</span></div>
       <div class="stat"><span class="stat-num">200</span><span class="stat-label">Seats only</span></div>
     </div>
-
+ 
     <div class="countdown" id="countdown">
       <div class="cd-box"><span class="cd-num" id="cd-d">00</span><span class="cd-label">Days</span></div>
       <div class="cd-box"><span class="cd-num" id="cd-h">00</span><span class="cd-label">Hours</span></div>
       <div class="cd-box"><span class="cd-num" id="cd-m">00</span><span class="cd-label">Mins</span></div>
       <div class="cd-box"><span class="cd-num" id="cd-s">00</span><span class="cd-label">Secs</span></div>
     </div>
-
+ 
     <div class="tags">
       <span class="tag">Solidity 0.8+</span>
       <span class="tag">ERC-20 Tokens</span>
@@ -520,9 +520,9 @@ footer{
       <span class="tag">Sepolia Testnet</span>
     </div>
   </div>
-
+ 
   <!-- FORM CARD -->
-  <div class="form-card">
+  <div class="form-card" id="formSection">
     <div class="form-logo-row">
       <img src="logo.png" alt="" id="formLogo" onerror="this.style.display='none'"/>
       <div>
@@ -530,7 +530,7 @@ footer{
       </div>
     </div>
     <div class="form-sub">// 200 spots · confirmation email sent instantly</div>
-
+ 
     <div id="formWrapper">
       <form id="regForm" onsubmit="handleSubmit(event)" novalidate>
         <div class="form-row">
@@ -605,7 +605,7 @@ footer{
       </form>
       <p class="privacy-note">🔒 No spam. Your info is safe. Confirmation sent right away.</p>
     </div>
-
+ 
     <div class="success-msg" id="successMsg">
       <div class="success-icon">🎉</div>
       <h3>You're officially in!</h3>
@@ -618,12 +618,12 @@ footer{
     </div>
   </div>
 </section>
-
+ 
 <!-- SESSION TIMELINE -->
 <section class="section">
   <div class="section-label">// what's inside</div>
   <h2 class="section-heading">3 Sessions. <span class="grad-text">150 Minutes.</span> Real Skills.</h2>
-
+ 
   <div class="date-banner">
     <div class="di"><span class="dl">Date</span><span class="dv">Saturday, 14 June 2025</span></div>
     <div class="di"><span class="dl">Time</span><span class="dv">1:00 PM – 3:30 PM IST</span></div>
@@ -631,9 +631,9 @@ footer{
     <div class="di"><span class="dl">Platform</span><span class="dv">Google Meet (link via email)</span></div>
     <div class="di"><span class="dl">Price</span><span class="dv" style="background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">₹0 — FREE</span></div>
   </div>
-
+ 
   <div class="timeline">
-
+ 
     <!-- SESSION 1 -->
     <div class="tl-item">
       <div class="tl-left">
@@ -657,7 +657,7 @@ footer{
         </div>
       </div>
     </div>
-
+ 
     <!-- SESSION 2 -->
     <div class="tl-item">
       <div class="tl-left">
@@ -683,7 +683,7 @@ footer{
         </div>
       </div>
     </div>
-
+ 
     <!-- SESSION 3 -->
     <div class="tl-item">
       <div class="tl-left">
@@ -707,17 +707,17 @@ footer{
         </div>
       </div>
     </div>
-
+ 
   </div>
 </section>
-
+ 
 <!-- INSTRUCTOR / COMPANY -->
 <section class="section" style="padding-top:0;">
   <div class="section-label">// who's behind this</div>
   <h2 class="section-heading">Meet Your <span class="grad-text">Instructor & Company</span></h2>
-
+ 
   <div class="instructor-wrap">
-
+ 
     <!-- COMPANY CARD -->
     <div class="company-card">
       <div class="company-logo-row">
@@ -741,7 +741,7 @@ footer{
         <li>Serving startups, enterprises, developers & learners across India</li>
       </ul>
     </div>
-
+ 
     <!-- FOUNDER CARD -->
     <div class="founder-card">
       <div class="founder-avatar">👨‍💻</div>
@@ -759,10 +759,10 @@ footer{
         <div class="f-stat"><span class="f-stat-num">2025</span><span class="f-stat-label">Founded</span></div>
       </div>
     </div>
-
+ 
   </div>
 </section>
-
+ 
 <!-- WHATSAPP COMMUNITY -->
 <div class="wa-section">
   <div class="wa-inner">
@@ -771,11 +771,11 @@ footer{
       <p class="wa-tagline">
         Digichain Pioneers is building a WhatsApp community for anyone interested in AI, blockchain, and tech innovation — students, freshers, builders, experienced professionals, everyone's welcome.
       </p>
-
+ 
       <div class="wa-who">
         <strong>Who's this for?</strong> Students wanting to learn · Freshers entering tech · Developers exploring Web3 · Professionals curious about blockchain · Entrepreneurs building the future — <strong>everyone who wants to stay ahead.</strong>
       </div>
-
+ 
       <div class="wa-groups">
         <div class="wa-group">
           <span class="wa-group-icon">📚</span>
@@ -798,13 +798,13 @@ footer{
           <div><div class="wa-group-title">General Discussion</div><div class="wa-group-desc">Connect, collaborate, grow together</div></div>
         </div>
       </div>
-
+ 
       <a href="https://chat.whatsapp.com/K5LZe5X1QJvEf51P5InMQI" target="_blank" rel="noopener" class="wa-big-btn">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Join the Community Free →
       </a>
     </div>
-
+ 
     <div class="wa-card">
       <div class="wa-card-header">
         <div class="wa-card-icon">💬</div>
@@ -830,7 +830,7 @@ footer{
     </div>
   </div>
 </div>
-
+ 
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">
@@ -845,12 +845,21 @@ footer{
   </div>
   <p>© 2025 Digichain Pioneers · Innovate. Integrate. <span class="grad-text" style="font-weight:700;">Transform.</span></p>
 </footer>
-
+ 
 <script>
 const APPS_SCRIPT_URL= 'https://script.google.com/macros/s/AKfycbxF7oTyQnIvTlcu0IzmQM0l2xcOOM8503-1g7JxTpd_dnuzcW3DDWq427pi687mXT8b/exec'
 const WA='https://chat.whatsapp.com/K5LZe5X1QJvEf51P5InMQI';
 const WEBINAR_DATE=new Date('2025-06-14T13:00:00+05:30');
-
+ 
+/* ---- Reserve My Spot nav button → scroll to form ---- */
+document.querySelectorAll('a[href="#formSection"], a[href="#register"]').forEach(function(btn){
+  btn.addEventListener('click',function(e){
+    e.preventDefault();
+    var target=document.getElementById('formSection')||document.getElementById('register');
+    if(target){target.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+ 
 /* ---- floating chain nodes ---- */
 (function(){
   const c=document.getElementById('chainNodes');
@@ -862,7 +871,7 @@ const WEBINAR_DATE=new Date('2025-06-14T13:00:00+05:30');
     c.appendChild(n);
   }
 })();
-
+ 
 /* ---- countdown ---- */
 function tick(){
   const diff=WEBINAR_DATE-new Date();
@@ -874,7 +883,7 @@ function tick(){
   document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
 }
 tick();setInterval(tick,1000);
-
+ 
 /* ---- validation ---- */
 function validate(){
   let ok=true;
@@ -885,7 +894,7 @@ function validate(){
   });
   return ok;
 }
-
+ 
 /* ---- submit ---- */
 async function handleSubmit(e){
   e.preventDefault();
