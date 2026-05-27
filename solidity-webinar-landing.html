@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Master Solidity & Smart Contracts — Live Webinar by Digichain Pioneers</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0b0520;
+  --bg2:#110830;
+  --bg3:#160b3a;
+  --cyan:#00e5ff;
+  --purple:#7b5bdb;
+  --pink:#e040fb;
+  --blue:#3b82f6;
+  --grad:linear-gradient(135deg,#00e5ff 0%,#7b5bdb 50%,#e040fb 100%);
+  --grad2:linear-gradient(90deg,#00e5ff,#a78bfa,#e040fb);
+  --grad3:linear-gradient(135deg,#3b82f6,#7b5bdb);
+  --text:#f0eeff;
+  --muted:#9490b5;
+  --border:rgba(123,91,219,0.25);
+  --card:rgba(255,255,255,0.04);
+  --card2:rgba(123,91,219,0.08);
+}
+html{scroll-behavior:smooth;}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Syne',sans-serif;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+/* ======= BLOCKCHAIN BACKGROUND ======= */
+.bg-layer{
+  position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;
+}
+/* hex grid SVG background */
+.bg-layer::before{
+  content:'';position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='92'%3E%3Cpolygon points='40,2 78,22 78,70 40,90 2,70 2,22' fill='none' stroke='rgba(123,91,219,0.12)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size:80px 92px;
+  opacity:1;
+}
+/* circuit lines overlay */
+.bg-layer::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(0,229,255,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,229,255,0.04) 1px,transparent 1px);
+  background-size:48px 48px;
+}
+.orb{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;}
+.orb1{width:700px;height:700px;background:rgba(0,229,255,0.06);top:-200px;right:-150px;animation:orbFloat 12s ease-in-out infinite;}
+.orb2{width:600px;height:600px;background:rgba(224,64,251,0.07);bottom:-100px;left:-200px;animation:orbFloat 15s ease-in-out infinite reverse;}
+.orb3{width:400px;height:400px;background:rgba(123,91,219,0.1);top:40%;left:35%;animation:orbFloat 10s ease-in-out infinite 3s;}
+.orb4{width:250px;height:250px;background:rgba(59,130,246,0.08);top:60%;right:10%;animation:orbFloat 8s ease-in-out infinite 1s;}
+@keyframes orbFloat{
+  0%,100%{transform:translate(0,0);}
+  33%{transform:translate(30px,-20px);}
+  66%{transform:translate(-20px,30px);}
+}
+
+/* ======= FLOATING CHAIN NODES ======= */
+.chain-nodes{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.node{
+  position:absolute;border-radius:50%;
+  border:1px solid rgba(123,91,219,0.35);
+  animation:nodeFloat linear infinite;
+}
+.node::after{content:'';position:absolute;inset:4px;border-radius:50%;background:rgba(123,91,219,0.15);}
+@keyframes nodeFloat{
+  0%{transform:translateY(100vh) rotate(0deg);opacity:0;}
+  10%{opacity:1;}
+  90%{opacity:0.6;}
+  100%{transform:translateY(-100px) rotate(360deg);opacity:0;}
+}
+
+/* ======= NAV ======= */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:0.9rem 3rem;
+  background:rgba(11,5,32,0.9);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+@media(max-width:700px){nav{padding:0.9rem 1.2rem;}}
+.nav-logo{display:flex;align-items:center;gap:10px;}
+.nav-logo img{width:38px;height:38px;object-fit:contain;}
+.nav-brand-wrap{display:flex;flex-direction:column;line-height:1.2;}
+.nav-brand{
+  font-family:'Space Mono',monospace;font-size:0.78rem;font-weight:700;
+  background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  letter-spacing:0.04em;
+}
+.nav-sub{font-size:0.6rem;color:var(--muted);letter-spacing:0.06em;font-family:'Space Mono',monospace;}
+.nav-cta{
+  font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+  color:#fff;background:var(--grad);border:none;padding:0.55rem 1.3rem;border-radius:6px;
+  cursor:pointer;text-decoration:none;transition:all 0.2s;
+  box-shadow:0 4px 20px rgba(123,91,219,0.4);
+}
+.nav-cta:hover{opacity:0.9;transform:translateY(-2px);box-shadow:0 6px 28px rgba(123,91,219,0.55);}
+
+/* ======= HERO ======= */
+.hero{
+  position:relative;z-index:1;min-height:100vh;
+  display:grid;grid-template-columns:1fr 490px;
+  gap:4rem;align-items:center;
+  padding:8rem 3rem 4rem;max-width:1300px;margin:0 auto;
+}
+@media(max-width:1000px){.hero{grid-template-columns:1fr;padding:7rem 1.5rem 3rem;gap:2.5rem;}}
+
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Space Mono',monospace;font-size:0.68rem;
+  background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.25);
+  border-radius:100px;padding:0.3rem 1rem;margin-bottom:1.4rem;
+  letter-spacing:0.06em;color:#a5f3fc;
+}
+.badge-dot{
+  width:7px;height:7px;border-radius:50%;background:var(--cyan);
+  box-shadow:0 0 8px var(--cyan);animation:pulse 1.8s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.3;transform:scale(1.6);}}
+
+h1{font-size:clamp(2rem,4.5vw,3.8rem);font-weight:800;line-height:1.06;letter-spacing:-0.025em;margin-bottom:1.3rem;}
+.grad-text{background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+h1 .sub-line{display:block;color:var(--muted);font-weight:600;font-size:0.58em;margin-top:0.3em;letter-spacing:0.01em;}
+
+.warmth{
+  background:linear-gradient(135deg,rgba(0,229,255,0.06),rgba(123,91,219,0.06));
+  border:1px solid rgba(0,229,255,0.15);border-radius:12px;
+  padding:1rem 1.2rem;font-size:0.88rem;color:#c4e8f5;
+  margin-bottom:1.8rem;line-height:1.65;
+}
+.warmth strong{color:#fff;}
+
+.hero-desc{font-size:0.98rem;color:var(--muted);line-height:1.75;max-width:520px;margin-bottom:1.8rem;}
+
+.stats-row{display:flex;gap:2.2rem;flex-wrap:wrap;margin-bottom:1.8rem;}
+.stat{display:flex;flex-direction:column;gap:2px;}
+.stat-num{
+  font-family:'Space Mono',monospace;font-size:1.45rem;font-weight:700;
+  background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.stat-label{font-size:0.68rem;color:var(--muted);letter-spacing:0.07em;text-transform:uppercase;}
+
+/* countdown */
+.countdown{display:flex;gap:0.8rem;margin-bottom:1.8rem;flex-wrap:wrap;}
+.cd-box{
+  display:flex;flex-direction:column;align-items:center;
+  background:rgba(123,91,219,0.12);border:1px solid rgba(123,91,219,0.3);
+  border-radius:10px;padding:0.55rem 0.9rem;min-width:62px;
+}
+.cd-num{
+  font-family:'Space Mono',monospace;font-size:1.35rem;font-weight:700;
+  background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;
+}
+.cd-label{font-size:0.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-top:3px;}
+
+.tags{display:flex;flex-wrap:wrap;gap:7px;}
+.tag{
+  font-family:'Space Mono',monospace;font-size:0.66rem;padding:4px 10px;border-radius:4px;
+  border:1px solid rgba(123,91,219,0.4);color:#c4b5fd;background:rgba(123,91,219,0.09);
+}
+
+/* ======= FORM CARD ======= */
+.form-card{
+  position:relative;
+  background:linear-gradient(160deg,rgba(22,11,58,0.95),rgba(11,5,32,0.98));
+  border:1px solid var(--border);border-radius:20px;padding:2.3rem;overflow:hidden;
+  box-shadow:0 0 60px rgba(123,91,219,0.2);
+}
+.form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);}
+
+.form-logo-row{display:flex;align-items:center;gap:12px;margin-bottom:0.8rem;}
+.form-logo-row img{width:40px;height:40px;object-fit:contain;}
+.form-title{font-size:1.3rem;font-weight:800;color:var(--text);}
+.form-sub{font-size:0.74rem;color:var(--muted);margin-bottom:1.5rem;font-family:'Space Mono',monospace;}
+
+.form-group{margin-bottom:0.95rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;margin-bottom:0.95rem;}
+@media(max-width:500px){.form-row{grid-template-columns:1fr;}}
+label{display:block;font-size:0.65rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#a78bfa;margin-bottom:0.3rem;}
+
+input,select,textarea{
+  width:100%;background:rgba(255,255,255,0.05);
+  border:1px solid rgba(123,91,219,0.25);border-radius:8px;
+  padding:0.65rem 0.9rem;color:var(--text);font-family:'Syne',sans-serif;
+  font-size:0.86rem;outline:none;transition:all 0.2s;-webkit-appearance:none;
+}
+input::placeholder,textarea::placeholder{color:rgba(148,144,181,0.5);}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--purple);background:rgba(123,91,219,0.08);
+  box-shadow:0 0 0 3px rgba(123,91,219,0.15);
+}
+select{cursor:pointer;color:var(--text);}
+select option{background:#160b3a;color:var(--text);}
+textarea{resize:none;height:70px;}
+
+.submit-btn{
+  width:100%;background:var(--grad);color:#07050f;border:none;border-radius:10px;
+  padding:0.9rem;font-family:'Syne',sans-serif;font-size:0.97rem;font-weight:800;
+  letter-spacing:0.03em;cursor:pointer;transition:all 0.25s;margin-top:0.3rem;
+  box-shadow:0 4px 24px rgba(123,91,219,0.4);
+}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(123,91,219,0.55);}
+.submit-btn:active{transform:translateY(0);}
+.submit-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;box-shadow:none;}
+.privacy-note{text-align:center;font-size:0.67rem;color:var(--muted);margin-top:0.85rem;font-family:'Space Mono',monospace;}
+
+/* success */
+.success-msg{display:none;text-align:center;padding:1.5rem 0;}
+.success-icon{font-size:3rem;margin-bottom:0.8rem;}
+.success-msg h3{
+  font-size:1.35rem;margin-bottom:0.4rem;
+  background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.success-msg p{color:var(--muted);font-size:0.86rem;line-height:1.65;}
+.mail-note{
+  margin-top:1rem;background:rgba(0,229,255,0.07);border:1px solid rgba(0,229,255,0.18);
+  border-radius:8px;padding:0.65rem 1rem;font-size:0.74rem;color:#a5f3fc;font-family:'Space Mono',monospace;
+}
+.wa-btn-s{
+  display:inline-flex;align-items:center;gap:9px;margin-top:1.4rem;
+  background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;text-decoration:none;
+  padding:0.75rem 1.4rem;border-radius:10px;font-weight:700;font-size:0.87rem;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.wa-btn-s:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(37,211,102,0.35);}
+.wa-btn-s svg{width:18px;height:18px;}
+
+/* errors */
+.field-error{font-size:0.67rem;color:#f472b6;margin-top:3px;display:none;}
+input.invalid,select.invalid{border-color:#f472b6!important;}
+
+/* spinner */
+.spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(7,5,15,0.3);border-top-color:#07050f;border-radius:50%;animation:spin 0.6s linear infinite;vertical-align:middle;margin-right:6px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* ======= SECTIONS ======= */
+.section{position:relative;z-index:1;max-width:1300px;margin:0 auto;padding:5rem 3rem;}
+@media(max-width:700px){.section{padding:3rem 1.5rem;}}
+.section-label{font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--purple);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.8rem;}
+.section-heading{font-size:clamp(1.7rem,2.8vw,2.5rem);font-weight:800;margin-bottom:2.5rem;max-width:600px;line-height:1.12;}
+
+/* ======= SESSION TIMELINE ======= */
+.timeline{display:flex;flex-direction:column;gap:0;max-width:860px;}
+.tl-item{
+  display:grid;grid-template-columns:120px 1fr;gap:0;
+  position:relative;
+}
+.tl-item:not(:last-child) .tl-right::before{
+  content:'';position:absolute;left:calc(120px + 28px);top:52px;bottom:0;width:2px;
+  background:linear-gradient(180deg,rgba(123,91,219,0.5),rgba(123,91,219,0.1));
+  z-index:0;
+}
+.tl-left{
+  padding:1.8rem 1.5rem 1.8rem 0;
+  display:flex;flex-direction:column;align-items:flex-end;
+  gap:3px;
+}
+.tl-time{font-family:'Space Mono',monospace;font-size:0.82rem;font-weight:700;color:var(--cyan);}
+.tl-dur{font-family:'Space Mono',monospace;font-size:0.64rem;color:var(--muted);}
+.tl-right{
+  padding:1.5rem 0 1.5rem 2rem;
+  border-left:2px solid rgba(123,91,219,0.25);
+  position:relative;
+}
+.tl-dot{
+  position:absolute;left:-11px;top:1.85rem;
+  width:20px;height:20px;border-radius:50%;
+  background:var(--grad);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 14px rgba(123,91,219,0.7);
+  flex-shrink:0;
+  z-index:1;
+}
+.tl-dot svg{width:10px;height:10px;fill:#fff;}
+.tl-card{
+  background:var(--card2);border:1px solid rgba(123,91,219,0.18);
+  border-radius:14px;padding:1.4rem 1.6rem;
+  transition:border-color 0.2s,background 0.2s,transform 0.2s;
+}
+.tl-card:hover{border-color:rgba(123,91,219,0.45);background:rgba(123,91,219,0.1);transform:translateX(4px);}
+.tl-num{font-family:'Space Mono',monospace;font-size:0.6rem;background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:0.1em;margin-bottom:0.5rem;}
+.tl-title{font-size:1.05rem;font-weight:800;color:var(--text);margin-bottom:0.4rem;}
+.tl-desc{font-size:0.8rem;color:var(--muted);line-height:1.65;}
+.tl-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:0.8rem;}
+.tl-pill{
+  font-family:'Space Mono',monospace;font-size:0.62rem;padding:3px 9px;border-radius:4px;
+  border:1px solid rgba(0,229,255,0.25);color:#a5f3fc;background:rgba(0,229,255,0.06);
+}
+@media(max-width:600px){
+  .tl-item{grid-template-columns:1fr;}
+  .tl-left{flex-direction:row;align-items:center;gap:8px;padding:1rem 0 0.3rem;}
+  .tl-right{padding:0.5rem 0 1.5rem 1.5rem;}
+  .tl-item:not(:last-child) .tl-right::before{left:27px;}
+  .tl-dot{left:-10px;}
+}
+
+/* date banner */
+.date-banner{
+  background:linear-gradient(135deg,rgba(0,229,255,0.06),rgba(123,91,219,0.08),rgba(224,64,251,0.06));
+  border:1px solid var(--border);border-radius:16px;padding:1.5rem 2rem;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+  margin-bottom:3rem;
+}
+.di{display:flex;flex-direction:column;gap:3px;}
+.dl{font-size:0.64rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;font-family:'Space Mono',monospace;}
+.dv{font-size:1rem;font-weight:700;color:var(--text);}
+
+/* ======= INSTRUCTOR ======= */
+.instructor-wrap{
+  display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;max-width:1000px;
+}
+@media(max-width:800px){.instructor-wrap{grid-template-columns:1fr;}}
+
+.company-card{
+  background:linear-gradient(160deg,rgba(22,11,58,0.9),rgba(11,5,32,0.95));
+  border:1px solid var(--border);border-radius:16px;padding:2rem;
+  position:relative;overflow:hidden;
+}
+.company-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);}
+.company-logo-row{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;}
+.company-logo-row img{width:48px;height:48px;object-fit:contain;}
+.company-name{font-size:1.1rem;font-weight:800;}
+.company-tag{font-family:'Space Mono',monospace;font-size:0.66rem;background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1rem;}
+.company-desc{font-size:0.8rem;color:var(--muted);line-height:1.75;margin-bottom:1rem;}
+.company-bullets{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.company-bullets li{font-size:0.78rem;color:var(--muted);display:flex;align-items:flex-start;gap:8px;line-height:1.5;}
+.company-bullets li::before{content:'→';color:var(--purple);font-family:'Space Mono',monospace;font-size:0.7rem;margin-top:2px;flex-shrink:0;}
+
+.founder-card{
+  background:linear-gradient(160deg,rgba(22,11,58,0.9),rgba(11,5,32,0.95));
+  border:1px solid var(--border);border-radius:16px;padding:2rem;
+  position:relative;overflow:hidden;
+}
+.founder-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--pink));}
+.founder-avatar{
+  width:72px;height:72px;border-radius:14px;
+  background:var(--grad);display:flex;align-items:center;justify-content:center;
+  font-size:1.8rem;margin-bottom:1.2rem;
+  box-shadow:0 4px 20px rgba(123,91,219,0.4);
+}
+.founder-name{font-size:1.1rem;font-weight:800;margin-bottom:0.15rem;}
+.founder-role{font-family:'Space Mono',monospace;font-size:0.66rem;background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1rem;}
+.founder-bio{font-size:0.8rem;color:var(--muted);line-height:1.75;margin-bottom:1rem;}
+.founder-quote{
+  background:rgba(123,91,219,0.08);border-left:3px solid var(--purple);
+  padding:0.8rem 1rem;border-radius:0 8px 8px 0;
+  font-size:0.78rem;color:#c4b5fd;line-height:1.6;font-style:italic;
+}
+.founder-stat-row{display:flex;gap:1.5rem;margin-top:1rem;}
+.f-stat{display:flex;flex-direction:column;gap:2px;}
+.f-stat-num{font-family:'Space Mono',monospace;font-size:1rem;font-weight:700;color:var(--cyan);}
+.f-stat-label{font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;}
+
+/* ======= WHATSAPP COMMUNITY ======= */
+.wa-section{
+  position:relative;z-index:1;
+  background:linear-gradient(135deg,rgba(11,5,32,0.95),rgba(7,42,20,0.4));
+  border-top:1px solid rgba(37,211,102,0.15);
+  border-bottom:1px solid rgba(37,211,102,0.15);
+  overflow:hidden;
+}
+.wa-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 70% 50%,rgba(37,211,102,0.06),transparent 60%);pointer-events:none;
+}
+.wa-inner{max-width:1300px;margin:0 auto;padding:4rem 3rem;display:grid;grid-template-columns:1fr 380px;gap:4rem;align-items:center;}
+@media(max-width:900px){.wa-inner{grid-template-columns:1fr;padding:3rem 1.5rem;gap:2rem;}}
+
+.wa-left h2{font-size:clamp(1.6rem,2.8vw,2.2rem);font-weight:800;margin-bottom:0.7rem;line-height:1.15;}
+.wa-tagline{font-size:0.9rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem;max-width:480px;}
+
+.wa-groups{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:2rem;}
+@media(max-width:500px){.wa-groups{grid-template-columns:1fr;}}
+.wa-group{
+  background:rgba(37,211,102,0.06);border:1px solid rgba(37,211,102,0.2);
+  border-radius:10px;padding:0.75rem 1rem;
+  display:flex;align-items:flex-start;gap:10px;
+}
+.wa-group-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px;}
+.wa-group-title{font-size:0.82rem;font-weight:700;color:#86efac;margin-bottom:0.15rem;}
+.wa-group-desc{font-size:0.72rem;color:var(--muted);}
+
+.wa-who{
+  background:rgba(255,255,255,0.03);border:1px solid rgba(37,211,102,0.15);
+  border-radius:10px;padding:0.85rem 1.1rem;
+  font-size:0.82rem;color:var(--muted);line-height:1.65;
+  margin-bottom:1.8rem;
+}
+.wa-who strong{color:var(--text);}
+
+.wa-big-btn{
+  display:inline-flex;align-items:center;gap:12px;
+  background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;
+  text-decoration:none;padding:1rem 2rem;border-radius:12px;
+  font-weight:800;font-size:0.95rem;
+  transition:transform 0.2s,box-shadow 0.2s;
+  box-shadow:0 4px 24px rgba(37,211,102,0.3);
+}
+.wa-big-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,0.45);}
+.wa-big-btn svg{width:22px;height:22px;}
+
+/* wa right card */
+.wa-card{
+  background:linear-gradient(160deg,rgba(7,42,20,0.5),rgba(11,5,32,0.9));
+  border:1px solid rgba(37,211,102,0.2);border-radius:18px;padding:2rem;
+  position:relative;overflow:hidden;
+}
+.wa-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#25d366,#128c7e);}
+.wa-card-header{display:flex;align-items:center;gap:12px;margin-bottom:1.2rem;}
+.wa-card-icon{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#25d366,#128c7e);display:flex;align-items:center;justify-content:center;font-size:1.4rem;}
+.wa-card-title{font-size:1.05rem;font-weight:800;}
+.wa-card-sub{font-size:0.7rem;color:#86efac;font-family:'Space Mono',monospace;}
+.wa-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.2rem;}
+.wa-stat{background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.18);border-radius:8px;padding:0.75rem;text-align:center;}
+.wa-stat-num{font-family:'Space Mono',monospace;font-size:1.1rem;font-weight:700;color:#4ade80;}
+.wa-stat-label{font-size:0.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px;}
+.wa-features{display:flex;flex-direction:column;gap:7px;}
+.wa-feature{display:flex;align-items:center;gap:8px;font-size:0.78rem;color:var(--muted);}
+.wa-feature::before{content:'✓';color:#25d366;font-weight:700;flex-shrink:0;}
+
+/* ======= FOOTER ======= */
+footer{
+  position:relative;z-index:1;
+  border-top:1px solid rgba(255,255,255,0.06);
+  text-align:center;padding:2rem;
+  font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--muted);
+}
+.footer-logo{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:0.8rem;}
+.footer-logo img{width:28px;height:28px;object-fit:contain;}
+.footer-brand{background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:0.75rem;font-weight:700;}
+.footer-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin:0.6rem 0;}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:0.7rem;transition:color 0.2s;}
+.footer-links a:hover{color:var(--cyan);}
+
+/* fade in */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.hero-content>*{animation:fadeUp 0.6s ease forwards;opacity:0;}
+.hero-content>*:nth-child(1){animation-delay:0.05s;}
+.hero-content>*:nth-child(2){animation-delay:0.15s;}
+.hero-content>*:nth-child(3){animation-delay:0.25s;}
+.hero-content>*:nth-child(4){animation-delay:0.35s;}
+.hero-content>*:nth-child(5){animation-delay:0.42s;}
+.hero-content>*:nth-child(6){animation-delay:0.5s;}
+.hero-content>*:nth-child(7){animation-delay:0.57s;}
+.form-card{animation:fadeUp 0.7s 0.2s ease forwards;opacity:0;}
+</style>
+</head>
+<body>
+
+<!-- BG LAYERS -->
+<div class="bg-layer"></div>
+<div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div><div class="orb orb4"></div>
+<div class="chain-nodes" id="chainNodes"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="logo.png.png" alt="Digichain Pioneers" id="navLogo" onerror="this.style.display='none'"/>
+    <div class="nav-brand-wrap">
+      <span class="nav-brand">Digichain Pioneers</span>
+      <span class="nav-sub">www.digichainpi.com</span>
+    </div>
+  </div>
+  <a href="#register" class="nav-cta">Reserve My Spot →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="register">
+  <div class="hero-content">
+
+    <div class="badge">
+      <span class="badge-dot"></span>
+      FREE LIVE WEBINAR · 14 JUNE 2025 · LIMITED TO 200 SEATS
+    </div>
+
+    <h1>
+      <span>Build Real</span><br/>
+      <span class="grad-text">Smart Contracts</span>
+      <span class="sub-line">From Zero to Deployed on Ethereum — in One Afternoon</span>
+    </h1>
+
+    <div class="warmth">
+      👋 <strong>No jargon. No boring slides. Just real code.</strong><br/>
+      We write, break, fix, and deploy together — live. You'll leave with an actual smart contract deployed on Ethereum testnet, not just theory.
+    </div>
+
+    <p class="hero-desc">A hands-on, practical 150-minute live session by <strong style="color:#c4b5fd">Digichain Pioneers</strong> — India's blockchain education & innovation company. Even if you've never touched blockchain before.</p>
+
+    <div class="stats-row">
+      <div class="stat"><span class="stat-num">150m</span><span class="stat-label">Live coding</span></div>
+      <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Practical</span></div>
+      <div class="stat"><span class="stat-num">₹0</span><span class="stat-label">Completely free</span></div>
+      <div class="stat"><span class="stat-num">200</span><span class="stat-label">Seats only</span></div>
+    </div>
+
+    <div class="countdown" id="countdown">
+      <div class="cd-box"><span class="cd-num" id="cd-d">00</span><span class="cd-label">Days</span></div>
+      <div class="cd-box"><span class="cd-num" id="cd-h">00</span><span class="cd-label">Hours</span></div>
+      <div class="cd-box"><span class="cd-num" id="cd-m">00</span><span class="cd-label">Mins</span></div>
+      <div class="cd-box"><span class="cd-num" id="cd-s">00</span><span class="cd-label">Secs</span></div>
+    </div>
+
+    <div class="tags">
+      <span class="tag">Solidity 0.8+</span>
+      <span class="tag">ERC-20 Tokens</span>
+      <span class="tag">Remix IDE</span>
+      <span class="tag">Web3.js</span>
+      <span class="tag">Hardhat</span>
+      <span class="tag">MetaMask</span>
+      <span class="tag">Sepolia Testnet</span>
+    </div>
+  </div>
+
+  <!-- FORM CARD -->
+  <div class="form-card">
+    <div class="form-logo-row">
+      <img src="logo.png" alt="" id="formLogo" onerror="this.style.display='none'"/>
+      <div>
+        <div class="form-title">Claim Your Free Seat</div>
+      </div>
+    </div>
+    <div class="form-sub">// 200 spots · confirmation email sent instantly</div>
+
+    <div id="formWrapper">
+      <form id="regForm" onsubmit="handleSubmit(event)" novalidate>
+        <div class="form-row">
+          <div>
+            <label for="firstName">First Name *</label>
+            <input type="text" id="firstName" placeholder="Rahul" required autocomplete="given-name"/>
+            <div class="field-error" id="e-firstName">Required</div>
+          </div>
+          <div>
+            <label for="lastName">Last Name *</label>
+            <input type="text" id="lastName" placeholder="Sharma" required autocomplete="family-name"/>
+            <div class="field-error" id="e-lastName">Required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" placeholder="rahul@example.com" required autocomplete="email"/>
+          <div class="field-error" id="e-email">Enter a valid email address</div>
+        </div>
+        <div class="form-group">
+          <label for="phone">WhatsApp / Phone *</label>
+          <input type="tel" id="phone" placeholder="+91 98765 43210" required autocomplete="tel"/>
+          <div class="field-error" id="e-phone">Required</div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label for="occupation">Occupation *</label>
+            <select id="occupation" required>
+              <option value="">Select…</option>
+              <option>Student</option>
+              <option>Software Developer</option>
+              <option>CS/IT Graduate</option>
+              <option>Web Developer</option>
+              <option>Data Engineer</option>
+              <option>Entrepreneur</option>
+              <option>Finance Professional</option>
+              <option>Other</option>
+            </select>
+            <div class="field-error" id="e-occupation">Required</div>
+          </div>
+          <div>
+            <label for="pincode">Pincode *</label>
+            <input type="text" id="pincode" placeholder="110001" maxlength="6" required/>
+            <div class="field-error" id="e-pincode">6-digit pincode</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="experience">Coding Experience</label>
+          <select id="experience">
+            <option value="">Select level…</option>
+            <option>Complete Beginner</option>
+            <option>Basic (HTML/CSS only)</option>
+            <option>Intermediate (Python/JS)</option>
+            <option>Advanced (Professional dev)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="solidity">Solidity / Blockchain Background</label>
+          <select id="solidity">
+            <option value="">Select…</option>
+            <option>No, completely new</option>
+            <option>Heard of it, never coded</option>
+            <option>Written a few lines</option>
+            <option>Built a simple contract</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="goal">Your #1 Goal (optional)</label>
+          <textarea id="goal" placeholder="e.g. I want to build my own DeFi project…"></textarea>
+        </div>
+        <button type="submit" class="submit-btn" id="submitBtn">Reserve My Free Spot →</button>
+      </form>
+      <p class="privacy-note">🔒 No spam. Your info is safe. Confirmation sent right away.</p>
+    </div>
+
+    <div class="success-msg" id="successMsg">
+      <div class="success-icon">🎉</div>
+      <h3>You're officially in!</h3>
+      <p id="successText">A confirmation email is heading to your inbox right now.</p>
+      <div class="mail-note">📧 Check spam if not received · 🗓 14 June · ⏰ 1:00 PM IST</div>
+      <a href="https://chat.whatsapp.com/K5LZe5X1QJvEf51P5InMQI" target="_blank" rel="noopener" class="wa-btn-s">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Join WhatsApp Community
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SESSION TIMELINE -->
+<section class="section">
+  <div class="section-label">// what's inside</div>
+  <h2 class="section-heading">3 Sessions. <span class="grad-text">150 Minutes.</span> Real Skills.</h2>
+
+  <div class="date-banner">
+    <div class="di"><span class="dl">Date</span><span class="dv">Saturday, 14 June 2025</span></div>
+    <div class="di"><span class="dl">Time</span><span class="dv">1:00 PM – 3:30 PM IST</span></div>
+    <div class="di"><span class="dl">Duration</span><span class="dv">150 Minutes Total</span></div>
+    <div class="di"><span class="dl">Platform</span><span class="dv">Google Meet (link via email)</span></div>
+    <div class="di"><span class="dl">Price</span><span class="dv" style="background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">₹0 — FREE</span></div>
+  </div>
+
+  <div class="timeline">
+
+    <!-- SESSION 1 -->
+    <div class="tl-item">
+      <div class="tl-left">
+        <span class="tl-time">1:00 PM</span>
+        <span class="tl-dur">20 mins</span>
+      </div>
+      <div class="tl-right">
+        <div class="tl-dot"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/></svg></div>
+        <div class="tl-card">
+          <div class="tl-num">SESSION 01 · INTRODUCTION & NETWORKING</div>
+          <div class="tl-title">Welcome + Ice-Breaking + The Big Picture</div>
+          <div class="tl-desc">
+            We kick things off with a warm welcome, quick intros, and a round of networking so you know who's in the room. Then we set the stage — why Solidity, why now, and what you'll actually build today. No boring theory dumps — just enough context to hit the ground running.
+          </div>
+          <div class="tl-pills">
+            <span class="tl-pill">Meet your cohort</span>
+            <span class="tl-pill">Blockchain in 5 mins</span>
+            <span class="tl-pill">Setup check</span>
+            <span class="tl-pill">Q&A open</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SESSION 2 -->
+    <div class="tl-item">
+      <div class="tl-left">
+        <span class="tl-time">1:20 PM</span>
+        <span class="tl-dur">100 mins</span>
+      </div>
+      <div class="tl-right">
+        <div class="tl-dot"><svg viewBox="0 0 24 24"><polygon points="12,2 22,20 2,20"/></svg></div>
+        <div class="tl-card">
+          <div class="tl-num">SESSION 02 · LIVE CODING WORKSHOP</div>
+          <div class="tl-title">Write. Deploy. Own Your First Smart Contract.</div>
+          <div class="tl-desc">
+            The heart of the webinar — 100 minutes of pure hands-on coding. We build from scratch together, make real mistakes, and fix them live. By the end you'll have written and deployed your own smart contract on the Ethereum Sepolia testnet. Every line explained, no copy-pasting blindly.
+          </div>
+          <div class="tl-pills">
+            <span class="tl-pill">Solidity basics live</span>
+            <span class="tl-pill">ERC-20 token</span>
+            <span class="tl-pill">Remix IDE</span>
+            <span class="tl-pill">MetaMask + testnet</span>
+            <span class="tl-pill">Deploy on Sepolia</span>
+            <span class="tl-pill">Security basics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SESSION 3 -->
+    <div class="tl-item">
+      <div class="tl-left">
+        <span class="tl-time">3:00 PM</span>
+        <span class="tl-dur">30 mins</span>
+      </div>
+      <div class="tl-right">
+        <div class="tl-dot"><svg viewBox="0 0 24 24"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg></div>
+        <div class="tl-card">
+          <div class="tl-num">SESSION 03 · DOUBT CLEARING & LIVE Q&A</div>
+          <div class="tl-title">Ask Anything. Leave with Clarity.</div>
+          <div class="tl-desc">
+            Open mic. No silly questions here. Bring everything you got stuck on, anything that confused you, and questions about your personal learning journey. We'll also share a clear roadmap — from this webinar to building full production dApps, freelancing, or landing a Web3 job.
+          </div>
+          <div class="tl-pills">
+            <span class="tl-pill">Doubt clearing</span>
+            <span class="tl-pill">Career roadmap</span>
+            <span class="tl-pill">Web3 job market</span>
+            <span class="tl-pill">Next steps</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- INSTRUCTOR / COMPANY -->
+<section class="section" style="padding-top:0;">
+  <div class="section-label">// who's behind this</div>
+  <h2 class="section-heading">Meet Your <span class="grad-text">Instructor & Company</span></h2>
+
+  <div class="instructor-wrap">
+
+    <!-- COMPANY CARD -->
+    <div class="company-card">
+      <div class="company-logo-row">
+        <img src="logo.png" alt="Digichain Pioneers" onerror="this.style.display='none'"/>
+        <div>
+          <div class="company-name">Digichain Pioneers</div>
+          <div class="company-tag">// digichainpi.com · Noida, India · Est. 2025</div>
+        </div>
+      </div>
+      <p class="company-desc">
+        Digichain Pioneers is an India-based blockchain technology firm specialising in education, training, consulting, and the development of decentralised ecosystems. Founded in late 2025, we operate at the intersection of complex blockchain, Crypto, and DeFi technologies and their real-world applications.
+      </p>
+      <p class="company-desc">
+        Our mission is to empower businesses and individuals by building secure, scalable, and intelligent blockchain solutions that create real-world impact. We believe in clarity over complexity, innovation over convention, and collaboration over competition.
+      </p>
+      <ul class="company-bullets">
+        <li>Deep expertise in blockchain, Web3, DeFi & tokenization infrastructure</li>
+        <li>Decentralised application development & smart contract auditing</li>
+        <li>AI-powered workflow automation & multi-chain integrations</li>
+        <li>Education and training for the next generation of builders</li>
+        <li>Serving startups, enterprises, developers & learners across India</li>
+      </ul>
+    </div>
+
+    <!-- FOUNDER CARD -->
+    <div class="founder-card">
+      <div class="founder-avatar">👨‍💻</div>
+      <div class="founder-name">Varun Gupta</div>
+      <div class="founder-role">// Founder & CEO · Digichain Pioneers</div>
+      <p class="founder-bio">
+        With 17+ years of experience in the IT industry, Varun made the conscious decision to step away from a well-established career to dedicate himself fully to blockchain — not just as a technology, but as a movement to rebuild trust, create transparency, and return ownership to people.
+      </p>
+      <div class="founder-quote">
+        "What if technology could do more? That question led me to blockchain. Through Digichain Pioneers, my mission is clear — to provide secure and scalable blockchain solutions and quality education that empowers India to lead in the decentralised future."
+      </div>
+      <div class="founder-stat-row">
+        <div class="f-stat"><span class="f-stat-num">17+</span><span class="f-stat-label">Years in IT</span></div>
+        <div class="f-stat"><span class="f-stat-num">500+</span><span class="f-stat-label">Students mentored</span></div>
+        <div class="f-stat"><span class="f-stat-num">2025</span><span class="f-stat-label">Founded</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHATSAPP COMMUNITY -->
+<div class="wa-section">
+  <div class="wa-inner">
+    <div class="wa-left">
+      <h2>We're Building Something <span style="color:#4ade80">Bigger.</span></h2>
+      <p class="wa-tagline">
+        Digichain Pioneers is building a WhatsApp community for anyone interested in AI, blockchain, and tech innovation — students, freshers, builders, experienced professionals, everyone's welcome.
+      </p>
+
+      <div class="wa-who">
+        <strong>Who's this for?</strong> Students wanting to learn · Freshers entering tech · Developers exploring Web3 · Professionals curious about blockchain · Entrepreneurs building the future — <strong>everyone who wants to stay ahead.</strong>
+      </div>
+
+      <div class="wa-groups">
+        <div class="wa-group">
+          <span class="wa-group-icon">📚</span>
+          <div><div class="wa-group-title">Study Resources</div><div class="wa-group-desc">Curated learning materials & guides</div></div>
+        </div>
+        <div class="wa-group">
+          <span class="wa-group-icon">💼</span>
+          <div><div class="wa-group-title">Jobs & Opportunities</div><div class="wa-group-desc">Web3 jobs, internships & gigs</div></div>
+        </div>
+        <div class="wa-group">
+          <span class="wa-group-icon">📰</span>
+          <div><div class="wa-group-title">News & Updates</div><div class="wa-group-desc">Latest in AI & blockchain</div></div>
+        </div>
+        <div class="wa-group">
+          <span class="wa-group-icon">🚀</span>
+          <div><div class="wa-group-title">Project Showcase</div><div class="wa-group-desc">Share what you're building</div></div>
+        </div>
+        <div class="wa-group">
+          <span class="wa-group-icon">💬</span>
+          <div><div class="wa-group-title">General Discussion</div><div class="wa-group-desc">Connect, collaborate, grow together</div></div>
+        </div>
+      </div>
+
+      <a href="https://chat.whatsapp.com/K5LZe5X1QJvEf51P5InMQI" target="_blank" rel="noopener" class="wa-big-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Join the Community Free →
+      </a>
+    </div>
+
+    <div class="wa-card">
+      <div class="wa-card-header">
+        <div class="wa-card-icon">💬</div>
+        <div>
+          <div class="wa-card-title">Digichain Community</div>
+          <div class="wa-card-sub">// AI · Blockchain · Web3 · India</div>
+        </div>
+      </div>
+      <div class="wa-stats">
+        <div class="wa-stat"><div class="wa-stat-num">5</div><div class="wa-stat-label">Focus Groups</div></div>
+        <div class="wa-stat"><div class="wa-stat-num">🆓</div><div class="wa-stat-label">Always Free</div></div>
+        <div class="wa-stat"><div class="wa-stat-num">24/7</div><div class="wa-stat-label">Active</div></div>
+        <div class="wa-stat"><div class="wa-stat-num">🇮🇳</div><div class="wa-stat-label">India First</div></div>
+      </div>
+      <div class="wa-features">
+        <div class="wa-feature">Learn AI + blockchain from practitioners</div>
+        <div class="wa-feature">Discover Web3 jobs before they go public</div>
+        <div class="wa-feature">Get feedback on your projects</div>
+        <div class="wa-feature">Stay updated on the tech that matters</div>
+        <div class="wa-feature">Build lasting connections in the ecosystem</div>
+        <div class="wa-feature">Part of Innovate. Integrate. Transform.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="logo.png.png" alt="" onerror="this.style.display='none'"/>
+    <span class="footer-brand">Digichain Pioneers</span>
+  </div>
+  <div class="footer-links">
+    <a href="https://www.digichainpi.com" target="_blank">www.digichainpi.com</a>
+    <a href="tel:+919958746778">+91 9958746778</a>
+    <a href="#">Noida, Uttar Pradesh, India</a>
+    <a href="https://chat.whatsapp.com/K5LZe5X1QJvEf51P5InMQI" target="_blank">WhatsApp Community</a>
+  </div>
+  <p>© 2025 Digichain Pioneers · Innovate. Integrate. <span class="grad-text" style="font-weight:700;">Transform.</span></p>
+</footer>
+
+<script>
+const APPS_SCRIPT_URL= 'https://script.google.com/macros/s/AKfycbxF7oTyQnIvTlcu0IzmQM0l2xcOOM8503-1g7JxTpd_dnuzcW3DDWq427pi687mXT8b/exec'
+const WA='https://chat.whatsapp.com/K5LZe5X1QJvEf51P5InMQI';
+const WEBINAR_DATE=new Date('2025-06-14T13:00:00+05:30');
+
+/* ---- floating chain nodes ---- */
+(function(){
+  const c=document.getElementById('chainNodes');
+  for(let i=0;i<18;i++){
+    const n=document.createElement('div');
+    n.className='node';
+    const s=8+Math.random()*18;
+    n.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${12+Math.random()*20}s;animation-delay:${Math.random()*15}s;`;
+    c.appendChild(n);
+  }
+})();
+
+/* ---- countdown ---- */
+function tick(){
+  const diff=WEBINAR_DATE-new Date();
+  if(diff<=0){document.getElementById('countdown').innerHTML='<span style="font-family:\'Space Mono\',monospace;font-size:0.8rem;color:#4ade80;">🔴 Webinar is LIVE right now!</span>';return;}
+  const d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+  document.getElementById('cd-d').textContent=String(d).padStart(2,'0');
+  document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
+}
+tick();setInterval(tick,1000);
+
+/* ---- validation ---- */
+function validate(){
+  let ok=true;
+  [{id:'firstName',fn:v=>v.trim().length>0},{id:'lastName',fn:v=>v.trim().length>0},{id:'email',fn:v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)},{id:'phone',fn:v=>v.trim().length>=7},{id:'occupation',fn:v=>v!==''},{id:'pincode',fn:v=>/^\d{6}$/.test(v.trim())}].forEach(f=>{
+    const el=document.getElementById(f.id),err=document.getElementById('e-'+f.id);
+    if(!f.fn(el.value)){el.classList.add('invalid');if(err)err.style.display='block';ok=false;}
+    else{el.classList.remove('invalid');if(err)err.style.display='none';}
+  });
+  return ok;
+}
+
+/* ---- submit ---- */
+async function handleSubmit(e){
+  e.preventDefault();
+  if(!validate())return;
+  const btn=document.getElementById('submitBtn');
+  btn.disabled=true;btn.innerHTML='<span class="spinner"></span>Registering…';
+  const payload={
+    timestamp:new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'}),
+    firstName:document.getElementById('firstName').value.trim(),
+    lastName:document.getElementById('lastName').value.trim(),
+    email:document.getElementById('email').value.trim(),
+    phone:document.getElementById('phone').value.trim(),
+    occupation:document.getElementById('occupation').value,
+    pincode:document.getElementById('pincode').value.trim(),
+    experience:document.getElementById('experience').value,
+    solidityLevel:document.getElementById('solidity').value,
+    goal:document.getElementById('goal').value.trim(),
+  };
+  try{
+    if(APPS_SCRIPT_URL==='YOUR_APPS_SCRIPT_URL_HERE'){await new Promise(r=>setTimeout(r,1200));showSuccess(payload.firstName);return;}
+    await fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    showSuccess(payload.firstName);
+  }catch{
+    btn.disabled=false;btn.innerHTML='Reserve My Free Spot →';
+    alert('Something went wrong. Please try again.');
+  }
+}
+function showSuccess(name){
+  document.getElementById('formWrapper').style.display='none';
+  const m=document.getElementById('successMsg');
+  document.getElementById('successText').innerHTML=`Hey <strong style="color:#f0eeff">${name}!</strong> A confirmation email is on its way to your inbox. 📬 Check spam if you don't see it within 2 minutes.`;
+  m.style.display='block';
+}
+</script>
+</body>
+</html>
