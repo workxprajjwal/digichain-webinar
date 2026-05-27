@@ -38,14 +38,12 @@ body{
 .bg-layer{
   position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;
 }
-/* hex grid SVG background */
 .bg-layer::before{
   content:'';position:absolute;inset:0;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='92'%3E%3Cpolygon points='40,2 78,22 78,70 40,90 2,70 2,22' fill='none' stroke='rgba(123,91,219,0.12)' stroke-width='1'/%3E%3C/svg%3E");
   background-size:80px 92px;
   opacity:1;
 }
-/* circuit lines overlay */
 .bg-layer::after{
   content:'';position:absolute;inset:0;
   background-image:
@@ -187,6 +185,7 @@ h1 .sub-line{display:block;color:var(--muted);font-weight:600;font-size:0.58em;m
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;margin-bottom:0.95rem;}
 @media(max-width:500px){.form-row{grid-template-columns:1fr;}}
 label{display:block;font-size:0.65rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#a78bfa;margin-bottom:0.3rem;}
+label .opt{color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0;font-size:0.6rem;}
  
 input,select,textarea{
   width:100%;background:rgba(255,255,255,0.05);
@@ -486,18 +485,18 @@ footer{
     <h1>
       <span>Build Real</span><br/>
       <span class="grad-text">Smart Contracts</span>
-      <span class="sub-line">From Zero to Deployed on Ethereum — in One Afternoon</span>
+      <span class="sub-line">From Zero to Deployed on Ethereum — in One Session</span>
     </h1>
  
     <div class="warmth">
       👋 <strong>No jargon. No boring slides. Just real code.</strong><br/>
-      We write, break, fix, and deploy together — live. You'll leave with an actual smart contract deployed on Ethereum testnet, not just theory.
+      We write, break, fix, and deploy together — live. You'll leave having written and deployed your own smart contract on Ethereum testnet, not just theory.
     </div>
  
-    <p class="hero-desc">A hands-on, practical 150-minute live session by <strong style="color:#c4b5fd">Digichain Pioneers</strong> — India's blockchain education & innovation company. Even if you've never touched blockchain before.</p>
+    <p class="hero-desc">A hands-on, practical 120-minute live session by <strong style="color:#c4b5fd">Digichain Pioneers</strong> — India's blockchain education & innovation company. Even if you've never touched blockchain before.</p>
  
     <div class="stats-row">
-      <div class="stat"><span class="stat-num">150m</span><span class="stat-label">Live coding</span></div>
+      <div class="stat"><span class="stat-num">120m</span><span class="stat-label">Live session</span></div>
       <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Practical</span></div>
       <div class="stat"><span class="stat-num">₹0</span><span class="stat-label">Completely free</span></div>
       <div class="stat"><span class="stat-num">200</span><span class="stat-label">Seats only</span></div>
@@ -529,7 +528,7 @@ footer{
         <div class="form-title">Claim Your Free Seat</div>
       </div>
     </div>
-    <div class="form-sub">// 200 spots · confirmation email sent instantly</div>
+    <div class="form-sub">// 200 spots · confirmation sent instantly</div>
  
     <div id="formWrapper">
       <form id="regForm" onsubmit="handleSubmit(event)" novalidate>
@@ -546,60 +545,32 @@ footer{
           </div>
         </div>
         <div class="form-group">
-          <label for="email">Email Address *</label>
-          <input type="email" id="email" placeholder="rahul@example.com" required autocomplete="email"/>
-          <div class="field-error" id="e-email">Enter a valid email address</div>
-        </div>
-        <div class="form-group">
-          <label for="phone">WhatsApp / Phone *</label>
+          <label for="phone">WhatsApp Number *</label>
           <input type="tel" id="phone" placeholder="+91 98765 43210" required autocomplete="tel"/>
           <div class="field-error" id="e-phone">Required</div>
         </div>
-        <div class="form-row">
-          <div>
-            <label for="occupation">Occupation *</label>
-            <select id="occupation" required>
-              <option value="">Select…</option>
-              <option>Student</option>
-              <option>Software Developer</option>
-              <option>CS/IT Graduate</option>
-              <option>Web Developer</option>
-              <option>Data Engineer</option>
-              <option>Entrepreneur</option>
-              <option>Finance Professional</option>
-              <option>Other</option>
-            </select>
-            <div class="field-error" id="e-occupation">Required</div>
-          </div>
-          <div>
-            <label for="pincode">Pincode *</label>
-            <input type="text" id="pincode" placeholder="110001" maxlength="6" required/>
-            <div class="field-error" id="e-pincode">6-digit pincode</div>
-          </div>
+        <div class="form-group">
+          <label for="email">Gmail Address *</label>
+          <input type="email" id="email" placeholder="rahul@gmail.com" required autocomplete="email"/>
+          <div class="field-error" id="e-email">Enter a valid email address</div>
         </div>
         <div class="form-group">
-          <label for="experience">Coding Experience</label>
-          <select id="experience">
-            <option value="">Select level…</option>
-            <option>Complete Beginner</option>
-            <option>Basic (HTML/CSS only)</option>
-            <option>Intermediate (Python/JS)</option>
-            <option>Advanced (Professional dev)</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="solidity">Solidity / Blockchain Background</label>
-          <select id="solidity">
+          <label for="occupation">Occupation <span class="opt">(optional)</span></label>
+          <select id="occupation">
             <option value="">Select…</option>
-            <option>No, completely new</option>
-            <option>Heard of it, never coded</option>
-            <option>Written a few lines</option>
-            <option>Built a simple contract</option>
+            <option>Student</option>
+            <option>Software Developer</option>
+            <option>CS/IT Graduate</option>
+            <option>Web Developer</option>
+            <option>Data Engineer</option>
+            <option>Entrepreneur</option>
+            <option>Finance Professional</option>
+            <option>Other</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="goal">Your #1 Goal (optional)</label>
-          <textarea id="goal" placeholder="e.g. I want to build my own DeFi project…"></textarea>
+          <label for="goal">Your #1 Goal <span class="opt">(optional)</span></label>
+          <textarea id="goal" placeholder="e.g. I want to understand how smart contracts work…"></textarea>
         </div>
         <button type="submit" class="submit-btn" id="submitBtn">Reserve My Free Spot →</button>
       </form>
@@ -609,8 +580,8 @@ footer{
     <div class="success-msg" id="successMsg">
       <div class="success-icon">🎉</div>
       <h3>You're officially in!</h3>
-      <p id="successText">A confirmation email is heading to your inbox right now.</p>
-      <div class="mail-note">📧 Check spam if not received · 🗓 14 June · ⏰ 1:00 PM IST</div>
+      <p id="successText">A confirmation is heading your way right now.</p>
+      <div class="mail-note">📧 Check spam if not received · 🗓 14 June (Sunday) · ⏰ 12:00 PM IST</div>
       <a href="https://chat.whatsapp.com/K5LZe5X1QJvEf51P5InMQI" target="_blank" rel="noopener" class="wa-btn-s">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Join WhatsApp Community
@@ -622,12 +593,12 @@ footer{
 <!-- SESSION TIMELINE -->
 <section class="section">
   <div class="section-label">// what's inside</div>
-  <h2 class="section-heading">3 Sessions. <span class="grad-text">150 Minutes.</span> Real Skills.</h2>
+  <h2 class="section-heading">3 Segments. <span class="grad-text">120 Minutes.</span> Real Skills.</h2>
  
   <div class="date-banner">
-    <div class="di"><span class="dl">Date</span><span class="dv">Saturday, 14 June 2025</span></div>
-    <div class="di"><span class="dl">Time</span><span class="dv">1:00 PM – 3:30 PM IST</span></div>
-    <div class="di"><span class="dl">Duration</span><span class="dv">150 Minutes Total</span></div>
+    <div class="di"><span class="dl">Date</span><span class="dv">Sunday, 15 June 2025</span></div>
+    <div class="di"><span class="dl">Time</span><span class="dv">12:00 PM – 2:00 PM IST</span></div>
+    <div class="di"><span class="dl">Duration</span><span class="dv">120 Minutes Total</span></div>
     <div class="di"><span class="dl">Platform</span><span class="dv">Google Meet (link via email)</span></div>
     <div class="di"><span class="dl">Price</span><span class="dv" style="background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">₹0 — FREE</span></div>
   </div>
@@ -637,22 +608,21 @@ footer{
     <!-- SESSION 1 -->
     <div class="tl-item">
       <div class="tl-left">
-        <span class="tl-time">1:00 PM</span>
-        <span class="tl-dur">20 mins</span>
+        <span class="tl-time">12:00 PM</span>
+        <span class="tl-dur">10 mins</span>
       </div>
       <div class="tl-right">
         <div class="tl-dot"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/></svg></div>
         <div class="tl-card">
-          <div class="tl-num">SESSION 01 · INTRODUCTION & NETWORKING</div>
-          <div class="tl-title">Welcome + Ice-Breaking + The Big Picture</div>
+          <div class="tl-num">SEGMENT 01 · INTRODUCTION & NETWORKING</div>
+          <div class="tl-title">Welcome + Quick Intros + The Big Picture</div>
           <div class="tl-desc">
-            We kick things off with a warm welcome, quick intros, and a round of networking so you know who's in the room. Then we set the stage — why Solidity, why now, and what you'll actually build today. No boring theory dumps — just enough context to hit the ground running.
+            A warm welcome, quick intros, and a chance to connect with fellow attendees. Then we set the stage — why Solidity, why now, and what you'll be doing today. Just enough context to hit the ground running, no lengthy theory.
           </div>
           <div class="tl-pills">
             <span class="tl-pill">Meet your cohort</span>
             <span class="tl-pill">Blockchain in 5 mins</span>
             <span class="tl-pill">Setup check</span>
-            <span class="tl-pill">Q&A open</span>
           </div>
         </div>
       </div>
@@ -661,16 +631,16 @@ footer{
     <!-- SESSION 2 -->
     <div class="tl-item">
       <div class="tl-left">
-        <span class="tl-time">1:20 PM</span>
-        <span class="tl-dur">100 mins</span>
+        <span class="tl-time">12:10 PM</span>
+        <span class="tl-dur">90 mins</span>
       </div>
       <div class="tl-right">
         <div class="tl-dot"><svg viewBox="0 0 24 24"><polygon points="12,2 22,20 2,20"/></svg></div>
         <div class="tl-card">
-          <div class="tl-num">SESSION 02 · LIVE CODING WORKSHOP</div>
+          <div class="tl-num">SEGMENT 02 · LIVE CODING WORKSHOP</div>
           <div class="tl-title">Write. Deploy. Own Your First Smart Contract.</div>
           <div class="tl-desc">
-            The heart of the webinar — 100 minutes of pure hands-on coding. We build from scratch together, make real mistakes, and fix them live. By the end you'll have written and deployed your own smart contract on the Ethereum Sepolia testnet. Every line explained, no copy-pasting blindly.
+            The heart of the session — 90 minutes of hands-on coding. We build together from scratch, make real mistakes, and fix them live. By the end you'll have written and deployed a smart contract on the Ethereum Sepolia testnet. Every line explained, no copy-pasting blindly.
           </div>
           <div class="tl-pills">
             <span class="tl-pill">Solidity basics live</span>
@@ -687,21 +657,21 @@ footer{
     <!-- SESSION 3 -->
     <div class="tl-item">
       <div class="tl-left">
-        <span class="tl-time">3:00 PM</span>
-        <span class="tl-dur">30 mins</span>
+        <span class="tl-time">1:40 PM</span>
+        <span class="tl-dur">20 mins</span>
       </div>
       <div class="tl-right">
         <div class="tl-dot"><svg viewBox="0 0 24 24"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg></div>
         <div class="tl-card">
-          <div class="tl-num">SESSION 03 · DOUBT CLEARING & LIVE Q&A</div>
+          <div class="tl-num">SEGMENT 03 · DOUBT CLEARING & LIVE Q&A</div>
           <div class="tl-title">Ask Anything. Leave with Clarity.</div>
           <div class="tl-desc">
-            Open mic. No silly questions here. Bring everything you got stuck on, anything that confused you, and questions about your personal learning journey. We'll also share a clear roadmap — from this webinar to building full production dApps, freelancing, or landing a Web3 job.
+            Open floor. Bring everything you got stuck on during the session. We'll also touch on a simple roadmap — where to go from here, whether that's exploring DeFi, building dApps, or just learning more at your own pace.
           </div>
           <div class="tl-pills">
             <span class="tl-pill">Doubt clearing</span>
-            <span class="tl-pill">Career roadmap</span>
-            <span class="tl-pill">Web3 job market</span>
+            <span class="tl-pill">What to learn next</span>
+            <span class="tl-pill">Web3 landscape</span>
             <span class="tl-pill">Next steps</span>
           </div>
         </div>
@@ -728,7 +698,7 @@ footer{
         </div>
       </div>
       <p class="company-desc">
-        Digichain Pioneers is an India-based blockchain technology firm specialising in education, training, consulting, and the development of decentralised ecosystems. Founded in late 2025, we operate at the intersection of complex blockchain, Crypto, and DeFi technologies and their real-world applications.
+        Digichain Pioneers is an India-based blockchain technology firm specialising in education, training, consulting, and the development of decentralised ecosystems. Founded in 2025, we operate at the intersection of blockchain, Crypto, and DeFi technologies and their real-world applications.
       </p>
       <p class="company-desc">
         Our mission is to empower businesses and individuals by building secure, scalable, and intelligent blockchain solutions that create real-world impact. We believe in clarity over complexity, innovation over convention, and collaboration over competition.
@@ -847,9 +817,9 @@ footer{
 </footer>
  
 <script>
-const APPS_SCRIPT_URL= 'https://script.google.com/macros/s/AKfycbxF7oTyQnIvTlcu0IzmQM0l2xcOOM8503-1g7JxTpd_dnuzcW3DDWq427pi687mXT8b/exec'
+const APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbxF7oTyQnIvTlcu0IzmQM0l2xcOOM8503-1g7JxTpd_dnuzcW3DDWq427pi687mXT8b/exec';
 const WA='https://chat.whatsapp.com/K5LZe5X1QJvEf51P5InMQI';
-const WEBINAR_DATE=new Date('2025-06-14T13:00:00+05:30');
+const WEBINAR_DATE=new Date('2025-06-15T12:00:00+05:30');
  
 /* ---- Reserve My Spot nav button → scroll to form ---- */
 document.querySelectorAll('a[href="#formSection"], a[href="#register"]').forEach(function(btn){
@@ -887,7 +857,12 @@ tick();setInterval(tick,1000);
 /* ---- validation ---- */
 function validate(){
   let ok=true;
-  [{id:'firstName',fn:v=>v.trim().length>0},{id:'lastName',fn:v=>v.trim().length>0},{id:'email',fn:v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)},{id:'phone',fn:v=>v.trim().length>=7},{id:'occupation',fn:v=>v!==''},{id:'pincode',fn:v=>/^\d{6}$/.test(v.trim())}].forEach(f=>{
+  [
+    {id:'firstName',fn:v=>v.trim().length>0},
+    {id:'lastName',fn:v=>v.trim().length>0},
+    {id:'phone',fn:v=>v.trim().length>=7},
+    {id:'email',fn:v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)}
+  ].forEach(f=>{
     const el=document.getElementById(f.id),err=document.getElementById('e-'+f.id);
     if(!f.fn(el.value)){el.classList.add('invalid');if(err)err.style.display='block';ok=false;}
     else{el.classList.remove('invalid');if(err)err.style.display='none';}
@@ -905,12 +880,9 @@ async function handleSubmit(e){
     timestamp:new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'}),
     firstName:document.getElementById('firstName').value.trim(),
     lastName:document.getElementById('lastName').value.trim(),
-    email:document.getElementById('email').value.trim(),
     phone:document.getElementById('phone').value.trim(),
+    email:document.getElementById('email').value.trim(),
     occupation:document.getElementById('occupation').value,
-    pincode:document.getElementById('pincode').value.trim(),
-    experience:document.getElementById('experience').value,
-    solidityLevel:document.getElementById('solidity').value,
     goal:document.getElementById('goal').value.trim(),
   };
   try{
@@ -925,7 +897,7 @@ async function handleSubmit(e){
 function showSuccess(name){
   document.getElementById('formWrapper').style.display='none';
   const m=document.getElementById('successMsg');
-  document.getElementById('successText').innerHTML=`Hey <strong style="color:#f0eeff">${name}!</strong> A confirmation email is on its way to your inbox. 📬 Check spam if you don't see it within 2 minutes.`;
+  document.getElementById('successText').innerHTML=`Hey <strong style="color:#f0eeff">${name}!</strong> A confirmation is on its way. 📬 Check spam if you don't see it within 2 minutes.`;
   m.style.display='block';
 }
 </script>
