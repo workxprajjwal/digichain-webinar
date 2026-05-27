@@ -535,23 +535,23 @@ footer{
         <div class="form-row">
           <div>
             <label for="firstName">First Name *</label>
-            <input type="text" id="firstName" placeholder="Rahul" required autocomplete="given-name"/>
+            <input type="text" id="firstName" placeholder="your name" required autocomplete="given-name"/>
             <div class="field-error" id="e-firstName">Required</div>
           </div>
           <div>
             <label for="lastName">Last Name *</label>
-            <input type="text" id="lastName" placeholder="Sharma" required autocomplete="family-name"/>
+            <input type="text" id="lastName" placeholder="your last name" required autocomplete="family-name"/>
             <div class="field-error" id="e-lastName">Required</div>
           </div>
         </div>
         <div class="form-group">
           <label for="phone">WhatsApp Number *</label>
-          <input type="tel" id="phone" placeholder="+91 98765 43210" required autocomplete="tel"/>
+          <input type="tel" id="phone" placeholder="+91 xxxxx xxx10" required autocomplete="tel"/>
           <div class="field-error" id="e-phone">Required</div>
         </div>
         <div class="form-group">
           <label for="email">Gmail Address *</label>
-          <input type="email" id="email" placeholder="rahul@gmail.com" required autocomplete="email"/>
+          <input type="email" id="email" placeholder="xx@xx.com" required autocomplete="email"/>
           <div class="field-error" id="e-email">Enter a valid email address</div>
         </div>
         <div class="form-group">
@@ -596,10 +596,10 @@ footer{
   <h2 class="section-heading">3 Segments. <span class="grad-text">120 Minutes.</span> Real Skills.</h2>
  
   <div class="date-banner">
-    <div class="di"><span class="dl">Date</span><span class="dv">Sunday, 15 June 2025</span></div>
+    <div class="di"><span class="dl">Date</span><span class="dv">Sunday, 14 June 2025</span></div>
     <div class="di"><span class="dl">Time</span><span class="dv">12:00 PM – 2:00 PM IST</span></div>
     <div class="di"><span class="dl">Duration</span><span class="dv">120 Minutes Total</span></div>
-    <div class="di"><span class="dl">Platform</span><span class="dv">Google Meet (link via email)</span></div>
+    <div class="di"><span class="dl">Platform</span><span class="dv">Zoom meeting ( link via whatsapp community)</span></div>
     <div class="di"><span class="dl">Price</span><span class="dv" style="background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">₹0 — FREE</span></div>
   </div>
  
@@ -845,7 +845,7 @@ document.querySelectorAll('a[href="#formSection"], a[href="#register"]').forEach
 /* ---- countdown ---- */
 function tick(){
   const diff=WEBINAR_DATE-new Date();
-  if(diff<=0){document.getElementById('countdown').innerHTML='<span style="font-family:\'Space Mono\',monospace;font-size:0.8rem;color:#4ade80;">🔴 Webinar is LIVE right now!</span>';return;}
+  if(diff<=0){document.getElementById('countdown').innerHTML='<span style="font-family:\'Space Mono\',monospace;font-size:0.8rem;color:#4ade80;">🔴 Webinar is FREE for now!</span>';return;}
   const d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
   document.getElementById('cd-d').textContent=String(d).padStart(2,'0');
   document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
