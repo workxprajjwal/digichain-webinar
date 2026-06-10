@@ -37,8 +37,15 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;overfl
 .node::after{content:'';position:absolute;inset:4px;border-radius:50%;background:rgba(123,91,219,0.15);}
 @keyframes nodeFloat{0%{transform:translateY(100vh) rotate(0deg);opacity:0;}10%{opacity:1;}90%{opacity:0.6;}100%{transform:translateY(-100px) rotate(360deg);opacity:0;}}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:0.9rem 3rem;background:rgba(11,5,32,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
-@media(max-width:700px){nav{padding:0.9rem 1.2rem;}}
+/* ======= URGENCY TOP STRIP ======= */
+.urgency-strip{position:fixed;top:0;left:0;right:0;z-index:101;background:linear-gradient(90deg,rgba(224,64,251,0.18),rgba(123,91,219,0.18),rgba(0,229,255,0.16));border-bottom:1px solid rgba(224,64,251,0.3);backdrop-filter:blur(16px);text-align:center;padding:0.4rem 1rem;font-family:'Space Mono',monospace;font-size:0.68rem;letter-spacing:0.04em;color:#f5d0fe;display:flex;align-items:center;justify-content:center;gap:0.5rem;flex-wrap:wrap;}
+.urgency-strip strong{color:#fff;}
+.urgency-strip .us-flame{animation:flameP 1.4s ease-in-out infinite;}
+.urgency-strip #stripCountdown{color:#a5f3fc;font-weight:700;}
+@media(max-width:600px){.urgency-strip{font-size:0.6rem;padding:0.35rem 0.6rem;}}
+
+nav{position:fixed;top:28px;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:0.9rem 3rem;background:rgba(11,5,32,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+@media(max-width:700px){nav{padding:0.9rem 1.2rem;top:26px;}}
 .nav-logo{display:flex;align-items:center;gap:10px;}
 .nav-logo img{width:38px;height:38px;object-fit:contain;}
 .nav-brand-wrap{display:flex;flex-direction:column;line-height:1.2;}
@@ -47,8 +54,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .nav-cta{font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#fff;background:var(--grad);border:none;padding:0.55rem 1.3rem;border-radius:6px;cursor:pointer;text-decoration:none;transition:all 0.2s;box-shadow:0 4px 20px rgba(123,91,219,0.4);}
 .nav-cta:hover{opacity:0.9;transform:translateY(-2px);box-shadow:0 6px 28px rgba(123,91,219,0.55);}
 
-.hero{position:relative;z-index:1;min-height:100vh;display:grid;grid-template-columns:1fr 490px;gap:4rem;align-items:center;padding:8rem 3rem 4rem;max-width:1300px;margin:0 auto;}
-@media(max-width:1000px){.hero{grid-template-columns:1fr;padding:7rem 1.5rem 3rem;gap:2.5rem;}}
+.hero{position:relative;z-index:1;min-height:100vh;display:grid;grid-template-columns:1fr 490px;gap:4rem;align-items:center;padding:8.5rem 3rem 4rem;max-width:1300px;margin:0 auto;}
+@media(max-width:1000px){.hero{grid-template-columns:1fr;padding:7.5rem 1.5rem 3rem;gap:2.5rem;}}
 
 .badge{display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:0.68rem;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.25);border-radius:100px;padding:0.3rem 1rem;margin-bottom:1.4rem;letter-spacing:0.06em;color:#a5f3fc;}
 .badge-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);animation:pulse 1.8s ease-in-out infinite;}
@@ -60,7 +67,11 @@ h1 .sub-line{display:block;color:var(--muted);font-weight:600;font-size:0.58em;m
 
 .warmth{background:linear-gradient(135deg,rgba(0,229,255,0.06),rgba(123,91,219,0.06));border:1px solid rgba(0,229,255,0.15);border-radius:12px;padding:1rem 1.2rem;font-size:0.88rem;color:#c4e8f5;margin-bottom:1.8rem;line-height:1.65;}
 .warmth strong{color:#fff;}
-.hero-desc{font-size:0.98rem;color:var(--muted);line-height:1.75;max-width:520px;margin-bottom:1.8rem;}
+.hero-desc{font-size:0.98rem;color:var(--muted);line-height:1.75;max-width:520px;margin-bottom:1.4rem;}
+
+/* live-only urgency line in hero */
+.live-line{display:flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:0.74rem;color:#fda4af;margin-bottom:1.8rem;}
+.live-line .lv-dot{width:8px;height:8px;border-radius:50%;background:#f472b6;box-shadow:0 0 10px #f472b6;animation:pulse 1.6s ease-in-out infinite;}
 
 .stats-row{display:flex;gap:2.2rem;flex-wrap:wrap;margin-bottom:1.8rem;}
 .stat{display:flex;flex-direction:column;gap:2px;}
@@ -81,7 +92,18 @@ h1 .sub-line{display:block;color:var(--muted);font-weight:600;font-size:0.58em;m
 .form-logo-row{display:flex;align-items:center;gap:12px;margin-bottom:0.8rem;}
 .form-logo-row img{width:40px;height:40px;object-fit:contain;}
 .form-title{font-size:1.3rem;font-weight:800;color:var(--text);}
-.form-sub{font-size:0.74rem;color:var(--muted);margin-bottom:1.5rem;font-family:'Space Mono',monospace;}
+.form-sub{font-size:0.74rem;color:var(--muted);margin-bottom:1.2rem;font-family:'Space Mono',monospace;}
+
+/* seats scarcity bar */
+.seats-bar-wrap{margin:0 0 1.4rem;background:rgba(224,64,251,0.06);border:1px solid rgba(224,64,251,0.25);border-radius:10px;padding:0.75rem 0.9rem;}
+.seats-bar-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;}
+.seats-bar-label{font-family:'Space Mono',monospace;font-size:0.62rem;letter-spacing:0.07em;text-transform:uppercase;color:#f0abfc;display:flex;align-items:center;gap:6px;}
+.seats-bar-label .flame{display:inline-block;animation:flameP 1.4s ease-in-out infinite;}
+@keyframes flameP{0%,100%{transform:scale(1);}50%{transform:scale(1.2);}}
+.seats-bar-count{font-family:'Space Mono',monospace;font-size:0.66rem;font-weight:700;color:#fda4af;}
+.seats-bar-track{height:7px;border-radius:6px;background:rgba(255,255,255,0.08);overflow:hidden;}
+.seats-bar-fill{height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,#e040fb,#7b5bdb);box-shadow:0 0 10px rgba(224,64,251,0.5);transition:width 1.6s cubic-bezier(.2,.7,.3,1);}
+
 .form-group{margin-bottom:0.95rem;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;margin-bottom:0.95rem;}
 @media(max-width:500px){.form-row{grid-template-columns:1fr;}}
@@ -99,6 +121,10 @@ textarea{resize:none;height:70px;}
 .submit-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(123,91,219,0.55);}
 .submit-btn:active{transform:translateY(0);}
 .submit-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;box-shadow:none;}
+
+/* urgency note under CTA */
+.urgency-note{display:flex;align-items:flex-start;gap:8px;background:rgba(224,64,251,0.07);border:1px solid rgba(224,64,251,0.2);border-radius:8px;padding:0.6rem 0.85rem;margin-top:0.8rem;font-size:0.71rem;color:#f5d0fe;line-height:1.55;}
+.urgency-note .un-icon{font-size:0.9rem;flex-shrink:0;line-height:1.3;}
 .privacy-note{text-align:center;font-size:0.67rem;color:var(--muted);margin-top:0.85rem;font-family:'Space Mono',monospace;}
 
 /* success */
@@ -132,8 +158,6 @@ input.invalid,select.invalid{border-color:#f472b6!important;}
 
 /* ======= PHONE FIELD ======= */
 .phone-wrap{position:relative;display:flex;align-items:stretch;}
-
-/* Country-code dropdown fused to the left of the number input */
 .phone-code-select{
   flex-shrink:0;
   width:auto;min-width:88px;max-width:120px;
@@ -145,7 +169,6 @@ input.invalid,select.invalid{border-color:#f472b6!important;}
   color:#c4b5fd;letter-spacing:0.01em;
   cursor:pointer;outline:none;
   -webkit-appearance:none;appearance:none;
-  /* tiny caret arrow */
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23a78bfa'/%3E%3C/svg%3E");
   background-repeat:no-repeat;
   background-position:right 7px center;
@@ -157,17 +180,11 @@ input.invalid,select.invalid{border-color:#f472b6!important;}
   box-shadow:none;
 }
 .phone-code-select option{background:#160b3a;color:var(--text);}
-
-/* number input loses left radius since country select sits there */
 .phone-wrap .phone-num-input{border-radius:0 8px 8px 0;padding-right:32px;}
-
-/* live ✓ / ✗ icon inside the number input */
 .phone-status{
   position:absolute;right:10px;top:50%;transform:translateY(-50%);
   font-size:0.88rem;pointer-events:none;line-height:1;font-weight:700;
 }
-
-/* green state when number is valid */
 input.valid-field{border-color:#22c55e!important;background:rgba(34,197,94,0.05)!important;}
 input.valid-field:focus{border-color:#22c55e!important;box-shadow:0 0 0 3px rgba(34,197,94,0.1)!important;}
 
@@ -292,6 +309,14 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);t
 .footer-links a{color:var(--muted);text-decoration:none;font-size:0.7rem;transition:color 0.2s;}
 .footer-links a:hover{color:var(--cyan);}
 
+/* ======= STICKY MOBILE CTA ======= */
+.sticky-cta{display:none;position:fixed;left:0;right:0;bottom:0;z-index:200;padding:0.65rem 0.9rem;background:rgba(11,5,32,0.97);backdrop-filter:blur(16px);border-top:1px solid var(--border);align-items:center;gap:0.8rem;box-shadow:0 -6px 24px rgba(0,0,0,0.35);}
+.sticky-cta-info{display:flex;flex-direction:column;line-height:1.2;flex-shrink:0;}
+.sticky-cta-time{font-family:'Space Mono',monospace;font-size:0.56rem;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase;}
+.sticky-cta-count{font-family:'Space Mono',monospace;font-size:0.85rem;font-weight:700;background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sticky-cta a{flex:1;text-align:center;background:var(--grad);color:#07050f;text-decoration:none;font-weight:800;font-size:0.84rem;padding:0.7rem;border-radius:9px;box-shadow:0 4px 18px rgba(123,91,219,0.4);}
+@media(max-width:1000px){.sticky-cta{display:flex;}body{padding-bottom:72px;}}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 .hero-content>*{animation:fadeUp 0.6s ease forwards;opacity:0;}
 .hero-content>*:nth-child(1){animation-delay:0.05s;}
@@ -301,10 +326,21 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);t
 .hero-content>*:nth-child(5){animation-delay:0.42s;}
 .hero-content>*:nth-child(6){animation-delay:0.5s;}
 .hero-content>*:nth-child(7){animation-delay:0.57s;}
+.hero-content>*:nth-child(8){animation-delay:0.63s;}
 .form-card{animation:fadeUp 0.7s 0.2s ease forwards;opacity:0;}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:0.001ms!important;animation-iteration-count:1!important;transition-duration:0.001ms!important;}
+}
 </style>
 </head>
 <body>
+
+<!-- URGENCY STRIP -->
+<div class="urgency-strip">
+  <span class="us-flame">&#128293;</span>
+  <span><strong>Free live webinar</strong> &middot; only <strong>200 seats</strong> &middot; closes in <span id="stripCountdown">&mdash;</span></span>
+</div>
 
 <div class="bg-layer"></div>
 <div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div><div class="orb orb4"></div>
@@ -323,10 +359,11 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);t
 
 <section class="hero" id="register">
   <div class="hero-content">
-    <div class="badge"><span class="badge-dot"></span>FREE LIVE WEBINAR &middot; 14 JUNE 2025 &middot; LIMITED TO 200 SEATS</div>
-    <h1><span>Build Real</span><br/><span class="grad-text">Smart Contracts</span><span class="sub-line">From Zero to Deployed on Ethereum &mdash; in One Session</span></h1>
+    <div class="badge"><span class="badge-dot"></span>FREE LIVE WEBINAR &middot; 14 JUNE 2026 &middot; ONLY 200 SEATS &middot; FILLING FAST</div>
+    <h1><span>Build Real</span><br/><span class="grad-text">Smart Contracts</span><span class="sub-line">From Zero to Deployed on Ethereum &mdash; in One Live Session</span></h1>
     <div class="warmth">&#128075; <strong>No jargon. No boring slides. Just real code.</strong><br/>We write, break, fix, and deploy together &mdash; live. You&apos;ll leave having written and deployed your own smart contract on Ethereum testnet, not just theory.</div>
     <p class="hero-desc">A hands-on, practical 120-minute live session by <strong style="color:#c4b5fd">Digichain Pioneers</strong> &mdash; India&apos;s blockchain education &amp; innovation company. Even if you&apos;ve never touched blockchain before.</p>
+    <div class="live-line"><span class="lv-dot"></span>Live only &middot; seats are limited to 200 &mdash; once they&apos;re gone, registration closes.</div>
     <div class="stats-row">
       <div class="stat"><span class="stat-num">120m</span><span class="stat-label">Live session</span></div>
       <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Practical</span></div>
@@ -354,6 +391,15 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);t
     <div class="form-sub">// 200 spots &middot; confirmation sent instantly</div>
 
     <div id="formWrapper">
+      <!-- seats scarcity bar -->
+      <div class="seats-bar-wrap">
+        <div class="seats-bar-top">
+          <span class="seats-bar-label"><span class="flame">&#128293;</span> Seats filling fast</span>
+          <span class="seats-bar-count" id="seatsCount">&mdash;</span>
+        </div>
+        <div class="seats-bar-track"><div class="seats-bar-fill" id="seatsFill"></div></div>
+      </div>
+
       <form id="regForm" onsubmit="handleSubmit(event)" novalidate>
         <div class="form-row">
           <div>
@@ -433,8 +479,12 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);t
           <label for="goal">Your #1 Goal <span class="opt">(optional)</span></label>
           <textarea id="goal" placeholder="e.g. I want to understand how smart contracts work&hellip;"></textarea>
         </div>
-        <button type="submit" class="submit-btn" id="submitBtn">Reserve My Free Spot &rarr;</button>
+        <button type="submit" class="submit-btn" id="submitBtn">Reserve My Free Seat &rarr;</button>
       </form>
+      <div class="urgency-note">
+        <span class="un-icon">&#9889;</span>
+        <span>Only <strong>200 seats</strong> &mdash; and they go fast. Lock yours now so you don&apos;t miss the live build.</span>
+      </div>
       <p class="privacy-note">&#128274; No spam. Your info is safe. Confirmation sent right away.</p>
     </div>
 
@@ -443,14 +493,14 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);t
       <div class="success-icon">&#127881;</div>
       <h3>You&apos;re officially in!</h3>
       <p id="successText">A confirmation is heading your way right now.</p>
-      <div class="mail-note">&#128231; Check spam if not received &middot; &#128197; 14 June (Sunday) &middot; &#8987; 12:00 PM IST</div>
+      <div class="mail-note">&#128231; Check spam if not received &middot; &#128197; 14 June 2026 (Sunday) &middot; &#8987; 12:00 PM IST</div>
       <div class="share-section">
         <div class="share-label"><span>&#128279;</span> Invite your friends &mdash; share this webinar</div>
         <div class="share-url-row">
           <input class="share-url-input" type="text" id="shareUrlInput" readonly/>
           <button class="copy-btn" id="copyBtn" onclick="copyShareLink()">Copy Link</button>
         </div>
-        <div class="share-msg">Share this link so your friends can grab a seat too!</div>
+        <div class="share-msg">Seats are limited &mdash; share this link so your friends can grab one too!</div>
         <div class="share-actions">
           <a id="waShareBtn" href="#" target="_blank" rel="noopener" class="wa-share-btn">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -471,7 +521,7 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);t
   <div class="section-label">// what&apos;s inside</div>
   <h2 class="section-heading">3 Segments. <span class="grad-text">120 Minutes.</span> Real Skills.</h2>
   <div class="date-banner">
-    <div class="di"><span class="dl">Date</span><span class="dv">Sunday, 14 June 2025</span></div>
+    <div class="di"><span class="dl">Date</span><span class="dv">Sunday, 14 June 2026</span></div>
     <div class="di"><span class="dl">Time</span><span class="dv">12:00 PM &ndash; 2:00 PM IST</span></div>
     <div class="di"><span class="dl">Duration</span><span class="dv">120 Minutes Total</span></div>
     <div class="di"><span class="dl">Platform</span><span class="dv">Zoom meeting ( link via whatsapp community)</span></div>
@@ -627,15 +677,33 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.06);t
     <a href="#">Noida, Uttar Pradesh, India</a>
     <a href="https://chat.whatsapp.com/K5LZe5X1QJvEf51P5InMQI" target="_blank">WhatsApp Community</a>
   </div>
-  <p>&copy; 2025 Digichain Pioneers &middot; Innovate. Integrate. <span class="grad-text" style="font-weight:700;">Transform.</span></p>
+  <p>&copy; 2026 Digichain Pioneers &middot; Innovate. Integrate. <span class="grad-text" style="font-weight:700;">Transform.</span></p>
 </footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-cta-info">
+    <span class="sticky-cta-time">Free &middot; closes in</span>
+    <span class="sticky-cta-count" id="stickyCount">&mdash;</span>
+  </div>
+  <a href="#formSection">Reserve Free Seat &rarr;</a>
+</div>
 
 <script>
 const APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbx2bhWGl8WgvZVw9bLtA1e1m_gIaV4CJ2TVuWmP63bV9p7AnXORWLDkr78X3HxSfElMKA/exec';
 const WA_COMMUNITY='https://chat.whatsapp.com/K5LZe5X1QJvEf51P5InMQI';
-const WEBINAR_DATE=new Date('2025-06-15T12:00:00+05:30');
 
-/* nav scroll */
+/* ===== WEBINAR DATE: 14 June 2026, 12:00 PM IST ===== */
+const WEBINAR_DATE=new Date('2026-06-14T12:00:00+05:30');
+
+/* ===== SEATS SCARCITY (edit these to match reality) =====
+   SEATS_TOTAL = total capacity.
+   SEATS_TAKEN = how many have already registered. Update this number
+   as registrations come in so the bar stays honest. */
+const SEATS_TOTAL=200;
+let   SEATS_TAKEN=124;   /* <-- change to your real count */
+
+/* nav + sticky + hero scroll */
 document.querySelectorAll('a[href="#formSection"],a[href="#register"]').forEach(function(btn){
   btn.addEventListener('click',function(e){
     e.preventDefault();
@@ -655,28 +723,47 @@ document.querySelectorAll('a[href="#formSection"],a[href="#register"]').forEach(
   }
 })();
 
-/* countdown */
+/* seats bar init */
+(function(){
+  const left=Math.max(0,SEATS_TOTAL-SEATS_TAKEN);
+  const pct=Math.min(100,Math.round((SEATS_TAKEN/SEATS_TOTAL)*100));
+  const cEl=document.getElementById('seatsCount');
+  if(cEl)cEl.textContent='Only '+left+' of '+SEATS_TOTAL+' seats left';
+  /* animate fill shortly after load */
+  setTimeout(function(){
+    const f=document.getElementById('seatsFill');
+    if(f)f.style.width=pct+'%';
+  },350);
+})();
+
+/* countdown (hero + top strip + sticky) */
+function pad(n){return String(n).padStart(2,'0');}
 function tick(){
   const diff=WEBINAR_DATE-new Date();
-  if(diff<=0){document.getElementById('countdown').innerHTML='<span style="font-family:\'Space Mono\',monospace;font-size:0.8rem;color:#4ade80;">Live now!</span>';return;}
+  if(diff<=0){
+    document.getElementById('countdown').innerHTML='<span style="font-family:\'Space Mono\',monospace;font-size:0.8rem;color:#4ade80;">Live now!</span>';
+    const strip=document.getElementById('stripCountdown');if(strip)strip.textContent='now — live!';
+    const sc=document.getElementById('stickyCount');if(sc)sc.textContent='Live now!';
+    return;
+  }
   const d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
-  document.getElementById('cd-d').textContent=String(d).padStart(2,'0');
-  document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
-  document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
-  document.getElementById('cd-s').textContent=String(s).padStart(2,'0');
+  document.getElementById('cd-d').textContent=pad(d);
+  document.getElementById('cd-h').textContent=pad(h);
+  document.getElementById('cd-m').textContent=pad(m);
+  document.getElementById('cd-s').textContent=pad(s);
+  const strip=document.getElementById('stripCountdown');
+  if(strip)strip.textContent=d+'d '+pad(h)+'h '+pad(m)+'m '+pad(s)+'s';
+  const sc=document.getElementById('stickyCount');
+  if(sc)sc.textContent=d+'d '+pad(h)+'h '+pad(m)+'m';
 }
 tick();setInterval(tick,1000);
 
 /* ---- PHONE VALIDATION (international) ---- */
-
 function phoneDigits(val){return val.replace(/\D/g,'');}
-
-/* Valid if 5–15 digits after stripping non-digits (ITU E.164 range) */
 function isValidPhone(val){
   const d=phoneDigits(val);
   return d.length>=5&&d.length<=15;
 }
-
 function updatePhoneUI(valid,partial){
   const inp=document.getElementById('phone');
   const st=document.getElementById('phoneStatus');
@@ -695,7 +782,6 @@ function updatePhoneUI(valid,partial){
     err.style.display='block';
   }
 }
-
 function livePhoneCheck(){
   const val=document.getElementById('phone').value;
   const d=phoneDigits(val);
@@ -704,12 +790,10 @@ function livePhoneCheck(){
   else if(d.length<5){updatePhoneUI(false,true);}
   else{updatePhoneUI(false,false);}
 }
-
 document.addEventListener('DOMContentLoaded',function(){
   const ph=document.getElementById('phone');
   if(!ph)return;
   ph.addEventListener('input',function(){
-    /* strip anything that can't be part of a phone number */
     const cleaned=this.value.replace(/[^\d\s+\-().]/g,'');
     if(cleaned!==this.value)this.value=cleaned;
     livePhoneCheck();
@@ -756,11 +840,15 @@ async function handleSubmit(e){
   btn.disabled=true;btn.innerHTML='<span class="spinner"></span>Registering&hellip;';
   /* combine selected country code with the typed number */
   const code=document.getElementById('phoneCode').value.replace('-CA',''); /* strip -CA suffix */
+  const rawPhone=document.getElementById('phone').value.trim();
+  /* Leading apostrophe forces Google Sheets to store the number as TEXT.
+     Without it, a value starting with "+" is parsed as a formula -> #ERROR / parse error. */
+  const phoneForSheet="'"+code+' '+rawPhone;
   const payload={
     timestamp:new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'}),
     firstName:document.getElementById('firstName').value.trim(),
     lastName: document.getElementById('lastName').value.trim(),
-    phone:    code+' '+document.getElementById('phone').value.trim(),
+    phone:    phoneForSheet,
     email:    document.getElementById('email').value.trim(),
     occupation:document.getElementById('occupation').value,
     goal:     document.getElementById('goal').value.trim(),
@@ -769,7 +857,7 @@ async function handleSubmit(e){
     await fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
     showSuccess(payload.firstName);
   }catch{
-    btn.disabled=false;btn.innerHTML='Reserve My Free Spot &rarr;';
+    btn.disabled=false;btn.innerHTML='Reserve My Free Seat &rarr;';
     alert('Something went wrong. Please try again.');
   }
 }
@@ -783,10 +871,13 @@ function showSuccess(name){
   document.getElementById('shareUrlInput').value=pageUrl;
   const waMsg=encodeURIComponent(
     '🚀 I just registered for a FREE live Solidity & Smart Contracts webinar by Digichain Pioneers!\n\n'+
-    '📅 14 June 2025 · 12:00 PM IST · 100% Free\n\nGrab your free seat here 👇\n'+pageUrl+'\n\nAlso join the community: '+WA_COMMUNITY
+    '📅 14 June 2026 · 12:00 PM IST · 100% Free · Only 200 seats\n\nGrab your free seat here 👇\n'+pageUrl+'\n\nAlso join the community: '+WA_COMMUNITY
   );
   document.getElementById('waShareBtn').href='https://wa.me/?text='+waMsg;
   m.style.display='block';
+  /* hide sticky CTA once registered */
+  const sc=document.getElementById('stickyCta');if(sc)sc.style.display='none';
+  document.body.style.paddingBottom='0';
 }
 
 /* ---- copy link ---- */
